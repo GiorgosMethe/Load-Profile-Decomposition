@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 """
-Linear interpolation upsampling
+Random samples method
 """
 def random_sample(distribution, size = 1):
     cdf = np.cumsum(distribution)
