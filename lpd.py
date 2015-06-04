@@ -67,14 +67,14 @@ def infer_t_0(q, p_d, E_k):
     A = np.array([])
     B = np.ones(len(q))
     for i in range(len(q)):
-        row = np.ones(len(q))
-        for j in range(len(q)):
+        row = np.ones(len(p_d))
+        for j in range(len(p_d)):
             row[j] = P_bar_d[i-j]
         if len(A) != 0:A = np.vstack((A,row))
         else:A = row
         B[i] = q[i]
-    t_0 = np.linalg.solve(A, B)
-    return t_0
+    x  =  np.linalg.lstsq(A, B)[0]
+    return x
 
 """
 Linear interpolation upsampling
