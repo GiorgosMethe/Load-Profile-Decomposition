@@ -3,11 +3,32 @@ import random
 
 """
 Random samples method
+Returns: 
+samples given a pdf
 """
 def random_sample(distribution, size = 1):
     cdf = np.cumsum(distribution)
     random_ = np.random.uniform(size=size)
     samples = [np.where(cdf >= ran)[0][0] for ran in random_]
+    return samples
+
+"""
+Random continous samples method
+Returns: 
+continuous samples given a discrete pdf
+"""
+def random_continous_sample(distribution, size = 1):
+    continuous_samples = []
+    cdf = np.cumsum(distribution)
+    random_ = np.random.uniform(size=size)
+    samples = [np.where(cdf >= ran)[0][0] for ran in random_]
+    for sample in zip(samples,random_):
+        if sample[0] == 0:continuous_samples.append(distribution[sample[0]])
+        else:
+            ratio = (sample[1] - cdf[sample[0]-1]) / (cdf[sample[0]] - cdf[sample[0]-1])
+            continuous_samples.append((ratio * (distribution[sample[0]] - distribution[sample[0]-1])) + distribution[sample[0]-1])
+    
+    print continuous_samples
     return samples
 
 """
@@ -27,7 +48,10 @@ def upsample(singal, new_signal):
 
 
 """
-Linear interpolation upsampling
+Infers and return the expected quantity, given the probability of starting time of a process,
+the duration, and the expected value of process' consumption rate.
+Returns:
+expected quantity
 """
 def infer_q_e(t, p_t_0, p_d, E_k = 1.0, D = 1.0):
 
@@ -43,6 +67,7 @@ def infer_q_e(t, p_t_0, p_d, E_k = 1.0, D = 1.0):
         q_e[i] = float(D) * E_k * sum_td
     return q_e
 
+
 """
 Infers the starting time probability density function of a process
 
@@ -57,6 +82,9 @@ A[1,1] = probability of starting process at timestep zero and have more than zer
 t_0 = pdf of starting time of process
 
 B = standard load profile
+
+Returns:
+PDF of starting time of process
 """
 def infer_t_0(q, p_d, E_k):
 
@@ -77,11 +105,19 @@ def infer_t_0(q, p_d, E_k):
     return x
 
 """
-Linear interpolation upsampling
+Constructs a synthetic profile
+Returns:
+Synthetic profile
 """
-def synthetic_profile(D, t, d, consumption, k, t_0):
+def synthetic_profile(D, t, d, consumption, k, t_0, continuous=False):
     ds = random_sample(d, D)
     ks = random_sample(k, D)
+    
+    if continuous:
+        t_0s = random_continous_sample(t_0, 10)
+
+
+
     t_0s = random_sample(t_0, D)
 
     slp = np.zeros(len(t))

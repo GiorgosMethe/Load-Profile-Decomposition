@@ -48,11 +48,11 @@ def main():
 
     random.seed(os.urandom(967)) # initialize random generator
 
-    t = np.linspace(0.0, 24.0, 24.0) # define the time axis of a day, here we use 96 values every quarter of an hour
+    t = np.linspace(0.0, 24.0, 96.0) # define the time axis of a day, here we use 96 values every quarter of an hour
 
     #standard load profile -- input
     q = read_slp(t, 'sample_slp.csv') # read the sample standard load profile, can be any length, can be resized given a low/high resolution time axis
-    q = 10000.0 * (q / np.sum(q)) # normalization of standard load profile
+    q = q / np.sum(q) # normalization of standard load profile
 
     plt.figure()
     plt.step(t,q)
@@ -60,37 +60,47 @@ def main():
     plt.show()
 
     # process duration
-    duration_axis = np.linspace(0.0, 24.0, 48.0)
+    duration_axis = np.linspace(0.0, 24.0, 96.0)
     (p_d, E_p) = app_time(duration_axis, 10, 2, 0.0, 24.0) # function that define the pdf of duration of a process
 
-    plt.step(duration_axis, p_d)
-    plt.title("pdf of duration")
-    plt.show()
-
-    # # process consumption
+    # process consumption
     consumption_axis = np.linspace(0.0, 3.5, 96.0)
     (p_k, E_k) = app_consumption(consumption_axis, 10, 2, 0.0, 3.5) # function that define the pdf of duration of a process
 
-    # # pdf of starting time
+    # pdf of starting time
     p_t_0 = lpd.infer_t_0(q, p_d, E_k) # computes the pdf of starting time of processes
-    # p_t_0 = p_t_0 / np.sum(p_t_0) # normalization of the pdf to sum up to zero
+    p_t_0 = p_t_0 / np.sum(p_t_0) # normalization of the pdf to sum up to zero
 
-    plt.plot(duration_axis, p_t_0)
-    plt.title("pdf of starting time")
+
+    """
+    1st Approach, starting time of processes is a discrete propapibility density function
+    """
+
+    plt.step(t, p_t_0)
+    plt.title("discrete pdf of starting time")
     plt.show()
 
-    # # synthetic profile of D processes
-    # D = 100
-    # synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
+    # synthetic profile of D processes
+    D = 100
+    synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0, False)
 
-    # # expected value of D processes
-    # q_e_e = lpd.infer_q_e(t, p_t_0, p_d, E_k, D)
+    # expected value of D processes
+    q_e_e = lpd.infer_q_e(t, p_t_0, p_d, E_k, D)
 
-    # plt.plot(t, synthetic_profile, "g-")
-    # plt.plot(t, q_e_e, "b--")
-    # plt.title("expected_value")
-    # plt.legend(["synthetic","expected"],loc=0)
-    # plt.show()  
+    plt.step(t, synthetic_profile, "g-")
+    plt.step(t, q_e_e, "b--")
+    plt.title("expected_value")
+    plt.legend(["synthetic","expected"],loc=0)
+    plt.show()
+
+
+    """
+    2nd Approach, starting time of processes is a discrete propapibility density function
+    """
+    # synthetic profile of D processes
+    D = 100
+    synthetic_continuous_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0, True)
+    
     
 if __name__ == "__main__":
     main()
