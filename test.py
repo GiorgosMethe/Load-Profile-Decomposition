@@ -45,62 +45,42 @@ def read_slp(t, file):
 Main function of test python module
 """
 def main():
-
     random.seed(os.urandom(967)) # initialize random generator
-
     t = np.linspace(0.0, 24.0, 96.0) # define the time axis of a day, here we use 96 values every quarter of an hour
-
     #standard load profile -- input
-    q = read_slp(t, 'sample_slp.csv') # read the sample standard load profile, can be any length, can be resized given a low/high resolution time axis
+    q = 0.01 * np.ones(len(t)) + read_slp(t, 'sample_slp.csv') # read the sample standard load profile, can be any length, can be resized given a low/high resolution time axis
     q = q / np.sum(q) # normalization of standard load profile
-
-    plt.figure()
-    plt.step(t,q)
-    plt.title("standard load profile")
-    plt.show()
-
     # process duration
     duration_axis = np.linspace(0.0, 24.0, 96.0)
     (p_d, E_p) = app_time(duration_axis, 10, 2, 0.0, 24.0) # function that define the pdf of duration of a process
-
     # process consumption
     consumption_axis = np.linspace(0.0, 3.5, 96.0)
     (p_k, E_k) = app_consumption(consumption_axis, 10, 2, 0.0, 3.5) # function that define the pdf of duration of a process
-
     # pdf of starting time
     p_t_0 = lpd.infer_t_0(q, p_d, E_k) # computes the pdf of starting time of processes
     p_t_0 = p_t_0 / np.sum(p_t_0) # normalization of the pdf to sum up to zero
 
-
     """
     1st Approach, starting time of processes is a discrete propapibility density function
     """
-
-    plt.step(t, p_t_0)
-    plt.title("discrete pdf of starting time")
-    plt.show()
-
     # synthetic profile of D processes
-    D = 100
-    synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0, False)
-
+    D = 20000
+    synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
     # expected value of D processes
     q_e_e = lpd.infer_q_e(t, p_t_0, p_d, E_k, D)
-
+    # plot
     plt.step(t, synthetic_profile, "g-")
     plt.step(t, q_e_e, "b--")
-    plt.title("expected_value")
-    plt.legend(["synthetic","expected"],loc=0)
-    plt.show()
-
-
+    
     """
     2nd Approach, starting time of processes is a discrete propapibility density function
     """
     # synthetic profile of D processes
-    D = 100
-    synthetic_continuous_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0, True)
-    
-    
+    ts, cs = lpd.continous_synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
+    plt.step(ts/len(t)*t[-1], cs, where='post', c='r')
+    plt.legend(["synthetic","expected", "continuous"],loc=0)
+    plt.xlim(0,24.0)
+    plt.show()
+
 if __name__ == "__main__":
     main()

@@ -1,5 +1,5 @@
 import numpy as np
-import random
+from operator import itemgetter
 
 """
 Random samples method
@@ -17,19 +17,21 @@ Random continous samples method
 Returns: 
 continuous samples given a discrete pdf
 """
-def random_continous_sample(distribution, size = 1):
+def random_continous_sample(distribution, axis=None, size = 1):
     continuous_samples = []
     cdf = np.cumsum(distribution)
     random_ = np.random.uniform(size=size)
     samples = [np.where(cdf >= ran)[0][0] for ran in random_]
     for sample in zip(samples,random_):
-        if sample[0] == 0:continuous_samples.append(distribution[sample[0]])
+        if sample[0] == 0:continuous_samples.append(float(sample[0]))
         else:
             ratio = (sample[1] - cdf[sample[0]-1]) / (cdf[sample[0]] - cdf[sample[0]-1])
-            continuous_samples.append((ratio * (distribution[sample[0]] - distribution[sample[0]-1])) + distribution[sample[0]-1])
-    
-    print continuous_samples
-    return samples
+
+            if axis is not None:
+                continuous_samples.append(axis[sample[0]-1] + (ratio * abs(axis[sample[0]] - axis[sample[0]-1])))
+            else:
+                continuous_samples.append(float(sample[0]) - (1.0 - ratio))
+    return continuous_samples
 
 """
 Linear interpolation upsampling
@@ -109,15 +111,9 @@ Constructs a synthetic profile
 Returns:
 Synthetic profile
 """
-def synthetic_profile(D, t, d, consumption, k, t_0, continuous=False):
+def synthetic_profile(D, t, d, consumption, k, t_0):
     ds = random_sample(d, D)
     ks = random_sample(k, D)
-    
-    if continuous:
-        t_0s = random_continous_sample(t_0, 10)
-
-
-
     t_0s = random_sample(t_0, D)
 
     slp = np.zeros(len(t))
@@ -128,3 +124,30 @@ def synthetic_profile(D, t, d, consumption, k, t_0, continuous=False):
             else:
                 slp[time] = slp[time] + d[1]
     return slp
+
+"""
+Constructs a continuous synthetic profile
+Returns:
+tuples (time, value)
+"""
+def continous_synthetic_profile(D, t, d, consumption, k, t_0):
+
+    t_0s = random_continous_sample(t_0, None, D)
+    ds = random_continous_sample(d, None, D)
+    ks = random_continous_sample(k, consumption, D)
+
+    slp = list()
+    for d in zip(ds, ks, t_0s): slp.append((d[2], d[2]+d[0]+2.0, d[1]))
+
+    up = [(p[0], p[2]) for p in slp]
+    down = [(p[1]%len(t), -p[2]) for p in slp]
+    carryover = sum([p[2] for p in slp if p[1]>len(t)]) # these processes last more than the end of the day
+    steps = up + down # append the two arrays
+    steps.append((0, carryover)) #first timestep carries the value of all processes not ended during the day
+    steps.append((len(t), 0)) #last timestep
+    ssteps = sorted(steps, key=itemgetter(0)) # sorted by starting time
+    matrix = np.array(ssteps)
+    ts = matrix[:, 0] # timesteps
+    cs = np.cumsum(matrix[:, 1]) # cumulative sum of all processes signals
+    
+    return ts, cs
