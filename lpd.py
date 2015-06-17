@@ -1,14 +1,37 @@
 import numpy as np
-import random
+from operator import itemgetter
 
 """
 Random samples method
+Returns: 
+samples given a pdf
 """
 def random_sample(distribution, size = 1):
     cdf = np.cumsum(distribution)
     random_ = np.random.uniform(size=size)
     samples = [np.where(cdf >= ran)[0][0] for ran in random_]
     return samples
+
+"""
+Random continous samples method
+Returns: 
+continuous samples given a discrete pdf
+"""
+def random_continous_sample(distribution, axis=None, size = 1):
+    continuous_samples = []
+    cdf = np.cumsum(distribution)
+    random_ = np.random.uniform(size=size)
+    samples = [np.where(cdf >= ran)[0][0] for ran in random_]
+    for sample in zip(samples,random_):
+        if sample[0] == 0:continuous_samples.append(float(sample[0]))
+        else:
+            ratio = (sample[1] - cdf[sample[0]-1]) / (cdf[sample[0]] - cdf[sample[0]-1])
+
+            if axis is not None:
+                continuous_samples.append(axis[sample[0]-1] + (ratio * abs(axis[sample[0]] - axis[sample[0]-1])))
+            else:
+                continuous_samples.append(float(sample[0]) - (1.0 - ratio))
+    return continuous_samples
 
 """
 Linear interpolation upsampling
@@ -27,7 +50,10 @@ def upsample(singal, new_signal):
 
 
 """
-Linear interpolation upsampling
+Infers and return the expected quantity, given the probability of starting time of a process,
+the duration, and the expected value of process' consumption rate.
+Returns:
+expected quantity
 """
 def infer_q_e(t, p_t_0, p_d, E_k = 1.0, D = 1.0):
 
@@ -43,6 +69,7 @@ def infer_q_e(t, p_t_0, p_d, E_k = 1.0, D = 1.0):
         q_e[i] = float(D) * E_k * sum_td
     return q_e
 
+
 """
 Infers the starting time probability density function of a process
 
@@ -57,6 +84,9 @@ A[1,1] = probability of starting process at timestep zero and have more than zer
 t_0 = pdf of starting time of process
 
 B = standard load profile
+
+Returns:
+PDF of starting time of process
 """
 def infer_t_0(q, p_d, E_k):
 
@@ -67,17 +97,19 @@ def infer_t_0(q, p_d, E_k):
     A = np.array([])
     B = np.ones(len(q))
     for i in range(len(q)):
-        row = np.ones(len(q))
-        for j in range(len(q)):
+        row = np.ones(len(p_d))
+        for j in range(len(p_d)):
             row[j] = P_bar_d[i-j]
         if len(A) != 0:A = np.vstack((A,row))
         else:A = row
         B[i] = q[i]
-    t_0 = np.linalg.solve(A, B)
-    return t_0
+    x  =  np.linalg.lstsq(A, B)[0]
+    return x
 
 """
-Linear interpolation upsampling
+Constructs a synthetic profile
+Returns:
+Synthetic profile
 """
 def synthetic_profile(D, t, d, consumption, k, t_0):
     ds = random_sample(d, D)
@@ -92,3 +124,30 @@ def synthetic_profile(D, t, d, consumption, k, t_0):
             else:
                 slp[time] = slp[time] + d[1]
     return slp
+
+"""
+Constructs a continuous synthetic profile
+Returns:
+tuples (time, value)
+"""
+def continous_synthetic_profile(D, t, d, consumption, k, t_0):
+
+    t_0s = random_continous_sample(t_0, None, D)
+    ds = random_continous_sample(d, None, D)
+    ks = random_continous_sample(k, consumption, D)
+
+    slp = list()
+    for d in zip(ds, ks, t_0s): slp.append((d[2], d[2]+d[0]+2.0, d[1]))
+
+    up = [(p[0], p[2]) for p in slp]
+    down = [(p[1]%len(t), -p[2]) for p in slp]
+    carryover = sum([p[2] for p in slp if p[1]>len(t)]) # these processes last more than the end of the day
+    steps = up + down # append the two arrays
+    steps.append((0, carryover)) #first timestep carries the value of all processes not ended during the day
+    steps.append((len(t), 0)) #last timestep
+    ssteps = sorted(steps, key=itemgetter(0)) # sorted by starting time
+    matrix = np.array(ssteps)
+    ts = matrix[:, 0] # timesteps
+    cs = np.cumsum(matrix[:, 1]) # cumulative sum of all processes signals
+    
+    return ts, cs
