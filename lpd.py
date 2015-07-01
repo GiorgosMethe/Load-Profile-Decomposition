@@ -3,7 +3,7 @@ from operator import itemgetter
 
 """
 Random samples method
-Returns: 
+Returns:
 samples given a pdf
 """
 def random_sample(distribution, size = 1):
@@ -14,7 +14,7 @@ def random_sample(distribution, size = 1):
 
 """
 Random continous samples method
-Returns: 
+Returns:
 continuous samples given a discrete pdf
 """
 def random_continous_sample(distribution, axis=None, size = 1):
@@ -93,7 +93,7 @@ def infer_t_0(q, p_d, E_k):
     P_bar_d = np.zeros(len(p_d)) # cumulative complementary distribution function
     for i in range(len(p_d)):
         P_bar_d[i] = np.sum(p_d[i:])
-        
+
     A = np.array([])
     B = np.ones(len(q))
     for i in range(len(q)):
@@ -149,5 +149,5 @@ def continous_synthetic_profile(D, t, d, consumption, k, t_0):
     matrix = np.array(ssteps)
     ts = matrix[:, 0] # timesteps
     cs = np.cumsum(matrix[:, 1]) # cumulative sum of all processes signals
-    
+
     return ts, cs

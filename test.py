@@ -11,8 +11,8 @@ Defines the distribution of duration of a process
 """
 def app_time(x, dfn, dfd, a, b):
     mean = 0.0
-    dist = np.divide(f.pdf(x, dfn, dfd), (f.cdf(b, dfn, dfd) - f.cdf(a, dfn, dfd))) # f-dist for duration, truncated from a to b 
-    dist = np.divide(dist, np.sum(dist)) # normalization 
+    dist = np.divide(f.pdf(x, dfn, dfd), (f.cdf(b, dfn, dfd) - f.cdf(a, dfn, dfd))) # f-dist for duration, truncated from a to b
+    dist = np.divide(dist, np.sum(dist)) # normalization
 
     for item in zip(x, dist): mean = mean + (item[0] * item[1]) # expectation of duration
 
@@ -23,12 +23,12 @@ Defines the distribution of consumption rate
 """
 def app_consumption(x, dfn, dfd, a, b):
     mean = 0.0
-    dist = np.divide(f.pdf(x, dfn, dfd, scale=0.1), (f.cdf(b, dfn, dfd, scale=0.1) - f.cdf(a, dfn, dfd, scale=0.1))) # f-dist for duration, truncated from a to b 
-    dist = np.divide(dist, np.sum(dist)) # normalization 
+    dist = np.divide(f.pdf(x, dfn, dfd, scale=0.1), (f.cdf(b, dfn, dfd, scale=0.1) - f.cdf(a, dfn, dfd, scale=0.1))) # f-dist for duration, truncated from a to b
+    dist = np.divide(dist, np.sum(dist)) # normalization
 
     for item in zip(x, dist): mean = mean + (item[0] * item[1]) # expectation of consumption
 
-    return dist, mean 
+    return dist, mean
 
 """
 Reads a standard load profile and resize it to the desired length
@@ -37,7 +37,7 @@ def read_slp(t, file):
     original_signal = np.genfromtxt(file ,delimiter=',')
     original_signal = original_signal[np.arange(0, len(original_signal))]
     new_signal = np.zeros(len(t))
-    new_signal = lpd.upsample(original_signal, new_signal) 
+    new_signal = lpd.upsample(original_signal, new_signal)
     return new_signal
 
 
@@ -71,7 +71,7 @@ def main():
     # plot
     plt.step(t, synthetic_profile, "g-")
     plt.step(t, q_e_e, "b--")
-    
+
     """
     2nd Approach, starting time of processes is a discrete propapibility density function
     """
