@@ -64,7 +64,7 @@ def main():
     1st Approach, starting time of processes is a discrete propapibility density function
     """
     # synthetic profile of D processes
-    D = 20000
+    D = 100
     synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
     # expected value of D processes
     q_e_e = lpd.infer_q_e(t, p_t_0, p_d, E_k, D)
@@ -81,6 +81,13 @@ def main():
     plt.legend(["synthetic","expected", "continuous"],loc=0)
     plt.xlim(0,24.0)
     plt.show()
+
+    """
+    Time discretization
+    """
+    discrete_timeaxis = np.linspace(0.0, 23.0, 24)
+    discrete_consumption = lpd.signal_discretization(discrete_timeaxis, t, ts, cs)
+
 
 if __name__ == "__main__":
     main()

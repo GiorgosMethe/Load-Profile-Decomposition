@@ -151,3 +151,23 @@ def continous_synthetic_profile(D, t, d, consumption, k, t_0):
     cs = np.cumsum(matrix[:, 1]) # cumulative sum of all processes signals
 
     return ts, cs
+
+
+"""
+Going from a continuous consumption process to a discrete
+Returns:
+Discrete time signal
+"""
+def signal_discretization(timeaxis, t, ts, cs):
+    discrete_synthetic = np.zeros(len(timeaxis))
+    last_value = 0.0
+    v = zip(ts, cs)
+    index = 0
+    for i in range(1, len(discrete_synthetic)):
+        print "--time:",timeaxis[i]
+        if v[index][0] > timeaxis[i]:
+            print "last_value:", last_value
+        while v[index][0] <= timeaxis[i]:
+            print "----", v[index][0]
+            last_value = v[index][1]
+            index = index + 1
