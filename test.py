@@ -64,7 +64,7 @@ def main():
     1st Approach, starting time of processes is a discrete propapibility density function
     """
     # synthetic profile of D processes
-    D = 100
+    D = 2000
     synthetic_profile = lpd.synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
     # expected value of D processes
     q_e_e = lpd.infer_q_e(t, p_t_0, p_d, E_k, D)
@@ -78,15 +78,20 @@ def main():
     # synthetic profile of D processes
     ts, cs = lpd.continous_synthetic_profile(D, t, p_d, consumption_axis, p_k, p_t_0)
     plt.step(ts/len(t)*t[-1], cs, where='post', c='r')
-    plt.legend(["synthetic","expected", "continuous"],loc=0)
     plt.xlim(0,24.0)
+    plt.legend(["synthetic","expected", "continuous"],loc=0)
     plt.show()
 
     """
     Time discretization
     """
-    discrete_timeaxis = np.linspace(0.0, 23.0, 24)
+    n_intervals = 8
+    discrete_timeaxis = np.linspace(0.0, 24.0, n_intervals+1)
     discrete_consumption = lpd.signal_discretization(discrete_timeaxis, t, ts, cs)
+    plt.step(ts/len(t)*t[-1], cs, where='post', c='r')
+    plt.step(discrete_timeaxis, discrete_consumption, where='post', c='k', ls='--',lw=2)
+    plt.legend(["continuous", "discretized"],loc=0)
+    plt.show()
 
 
 if __name__ == "__main__":

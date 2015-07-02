@@ -159,15 +159,21 @@ Returns:
 Discrete time signal
 """
 def signal_discretization(timeaxis, t, ts, cs):
-    discrete_synthetic = np.zeros(len(timeaxis))
-    last_value = 0.0
-    v = zip(ts, cs)
+    discrete = np.zeros(len(timeaxis))
+    v = zip(ts/(ts[-1]/timeaxis[-1]), cs)
+    last_time, last_value = 0.0, 0.0
     index = 0
-    for i in range(1, len(discrete_synthetic)):
-        print "--time:",timeaxis[i]
-        if v[index][0] > timeaxis[i]:
-            print "last_value:", last_value
-        while v[index][0] <= timeaxis[i]:
-            print "----", v[index][0]
-            last_value = v[index][1]
-            index = index + 1
+    for i in range(1, len(timeaxis)):
+        if v[index][0] > timeaxis[i]: # process starts after this interval
+            discrete[i-1] = discrete[i-1] + (last_value * (timeaxis[i] - timeaxis[i-1]))
+        else:
+            while v[index][0] <= timeaxis[i]:
+                discrete[i-1] = discrete[i-1] + (last_value * (v[index][0] - max(last_time, timeaxis[i-1])))
+                last_time, last_value = v[index][0], v[index][1]
+                index = index + 1
+                if index >= len(ts):break
+            if index >= len(ts):break
+            if v[index][0] > timeaxis[i]:
+                discrete[i-1] = discrete[i-1] + (last_value * (timeaxis[i] - last_time))
+
+    return discrete / (t[-1] / (len(timeaxis) - 1))
