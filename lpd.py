@@ -36,12 +36,12 @@ def random_continous_sample(distribution, axis=None, size = 1):
 """
 Linear interpolation upsampling
 """
-def upsample(singal, new_signal):
-    for i in range(len(singal)):
-        new_pos = int(round((i)*(float(len(new_signal)-1) / float(len(singal) -1))))
-        new_signal[new_pos] = singal[i]
+def upsample(signal, new_signal):
+    for i in range(len(signal)):
+        new_pos = int(round((i)*(float(len(new_signal)-1) / float(len(signal) -1))))
+        new_signal[new_pos] = signal[i]
         if (i > 0):
-            prev_pos = int(round((i-1)*(float(len(new_signal)-1) / float(len(singal) -1))))
+            prev_pos = int(round((i-1)*(float(len(new_signal)-1) / float(len(signal) -1))))
             for j in range(1, new_pos-prev_pos):
                 new_prop = float(j) / (new_pos - prev_pos)
                 prev_prop = 1.0 - new_prop
