@@ -4,6 +4,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import f
+import csv
 
 
 """
@@ -34,11 +35,15 @@ def app_consumption(x, dfn, dfd, a, b):
 Reads a standard load profile and resize it to the desired length
 """
 def read_slp(t, file):
-    original_signal = np.genfromtxt(file ,delimiter=',')
-    original_signal = original_signal[np.arange(0, len(original_signal))]
-    new_signal = np.zeros(len(t))
-    new_signal = lpd.upsample(original_signal, new_signal)
-    return new_signal
+    original_signal = np.genfromtxt(file, delimiter=',')
+
+    slp_year = original_signal[:, 3]
+    slp_avg_day = np.zeros(96)
+    for i in range(1, 365):
+        slp_avg_day = slp_avg_day + slp_year[((i-1)*96):((i)*96)]
+    print np.sum(slp_avg_day)
+    # slp_avg_day = slp_avg_day / 365.0
+    return slp_avg_day
 
 
 """
@@ -48,7 +53,7 @@ def main():
     random.seed(os.urandom(967)) # initialize random generator
     t = np.linspace(0.0, 24.0, 96.0) # define the time axis of a day, here we use 96 values every quarter of an hour
     #standard load profile -- input
-    q = 0.01 * np.ones(len(t)) + read_slp(t, 'sample_slp.csv') # read the sample standard load profile, can be any length, can be resized given a low/high resolution time axis
+    q = read_slp(t, 'Profielen-Elektriciteit-2015-versie-1.00 Folder/profielen Elektriciteit 2015 versie 1.00.csv') # read the sample standard load profile, can be any length, can be resized given a low/high resolution time axis
     q = q / np.sum(q) # normalization of standard load profile
     # process duration
     duration_axis = np.linspace(0.0, 24.0, 96.0)
