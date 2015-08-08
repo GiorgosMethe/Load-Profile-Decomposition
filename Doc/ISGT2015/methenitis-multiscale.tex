@@ -23,7 +23,7 @@
 \renewcommand{\bottomfraction}{0.8}
 \begin{document}
 
-\title{A Multi--Scale Energy Demand Model suggesting Direct Market Participation of Intelligent Agents}
+\title{A Multi--Scale Energy Demand Model suggests Direct Market Participation of Intelligent Agents}
 %Determining Market Participation for Intelligent Agent Groups using Synthetic Multi-Scale Energy Demand Profiles and Time-Shiftable Processes
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -34,16 +34,20 @@
 
 \maketitle
 
-\begin{abstract} In this paper, we propose a multi-scale model of energy demand that is consistent with observations at a macro scale. We discuss this model in the context of standard load profiles for (residential) electric loads, and demonstrate its use by studying direct market participation of intelligent agents at different aggregation scales of energy consumption. Next to scale, we investigate the benefits of demand response, more precisely intelligent scheduling of time-shiftable electric processes, and virtual storage intra-day and between days. Results show that the increasing electrification and introduction of flexibilities (electric vehicles, thermal applications, storage etc) is going to make direct market participation viable for smaller groups of consumers. Retailers may anticipate competition by intelligent energy cooperatives that directly participate in wholesale markets for electricity.
+\begin{abstract} In this paper, we propose a multi-scale model of energy demand that is consistent with observations at a macro scale. We discuss this model in the context of standard load profiles for (residential) electric loads, and demonstrate its use by studying direct market participation of intelligent agents at different aggregation scales of energy consumption. Next to scale, we investigate the benefits of demand response, more precisely intelligent scheduling of time-shiftable electric processes, and virtual storage intra-day and between days. Results show that the increasing electrification and introduction of flexibilities (electric vehicles, thermal applications, storage, etc.) is going to make direct market participation viable for smaller groups of consumers. Retailers may anticipate competition by intelligent energy cooperatives that directly participate in wholesale markets for electricity.
 \end{abstract}
+
+\begin{keywords}
+Demand Response, Intelligent Systems
+\end{keywords}
+
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
 \label{sec:Introduction}
 
 % introduction, slps, non-observability
-In today's energy system, the major fraction of electricity is provided to power consumers by utility scale power producers through retail aggregators.
-Retailers must procure the power for their costumers whose energy consumption profile is not always observable (e.g., due to high cost of smart-meter roll-outs on-site). Standard load profiles~\cite{jardini2000daily} (SLPs) are derived by electricity distribution system operators for several types of consumers. Typical examples include residential, commercial and industrial. Those SLPs are used by retailers to determine the amount of energy that they must procure in the wholesale energy markets (day-ahead and intraday). Typically, SLPs contain an averaged daily consumption profile for the whole year, treating weekdays, weekends, and holidays in a different manner, based on historic data and the temperature. Distribution system operators (DSOs) are computing these SLPs from measurements, based on the portfolio of end-consumers behind a distribution substation. Power producers sell their energy at the wholesale markets, and are influenced via the retailers by this information to plan the amount of electricity they will need to make available at any given time of the (next) day. The goal of a retailer is to minimize the daily imbalances of the network, which can be achieved more cost-efficiently in the day-ahead market than in the intraday market~\cite{kirschen2003demand}. %Individual end-consumers are treated the same based on their averaged load profile $\hat{q}$ of their type of consumption by the DSOs. 
+In today's energy system, the major fraction of electricity is provided to power consumers by utility scale power producers through retail aggregators. Retailers must procure the power for their costumers whose energy consumption profile is not always observable (e.g., due to high cost of smart-meter roll-outs on-site). Standard load profiles~\cite{jardini2000daily} (SLPs) are derived by electricity distribution system operators for several types of consumers. Typical examples include residential, commercial and industrial. Those SLPs are used by retailers to determine the amount of energy that they must procure in the wholesale energy markets (day-ahead and intraday). Typically, SLPs contain an averaged daily consumption profile, based on historic data and the temperature. Distribution system operators (DSOs) are computing these SLPs from measurements, based on the portfolio of end-consumers behind a distribution substation. Power producers sell their energy at the wholesale markets, and are influenced via the retailers by this information to plan the amount of electricity they will need to make available at any given time of the (next) day. The goal of a retailer is to minimize the daily imbalances of the network, which can be achieved more cost-efficiently in the day-ahead market than in the intraday market~\cite{kirschen2003demand}. %Individual end-consumers are treated the same based on their averaged load profile $\hat{q}$ of their type of consumption by the DSOs. 
 
 % smart-meters
 While computing the average load profile per type of end-consumer is enough to plan over a highly populated portfolio of costumers, this is not the case when a smaller number of end-consumers is considered. Smart--meters are electronic devices that record consumption of electric energy in small intervals of at most an hour and communicate that information at least daily back to the central system for monitoring and billing~\cite{depuru2011smart}. Unlike home energy monitors, smart--meters can gather data for remote reporting, e.g. to replace standard load profiles of consumer types by actual load profile date in future energy markets. Communication between end-user meters and DSOs enables smart power management --- the smart grid. For instance, based on the information of smart--meters intelligent household systems can shift, store or curtail unnecessary loads in a household when imbalances of the network are high.
@@ -54,52 +58,52 @@ In this paper we propose a multi-scale model that captures the specific volatili
 We use the proposed decomposition technique to generate synthetic aggregate demand profiles on several scales. Results from our model show the minimum viable retailer scale for direct participation in the wholesale markets, and how demand response and virtual storage may decrease this minimum scale by one magnitude. Experiments thus address the question under what circumstances (scale, flexibility) intelligent agents should choose a fixed contract with a retailer, or when to become a retailer.
 
 % OUTLOOK
-The remainder of this article is organized as follows: Section~\ref{sec:Related} presents related work on modeling electricity demand, Section~\ref{sec:Method} discusses the proposed multi-scale energy demand model and the required parameter derivations to make it consistent with macro observations. Section~\ref{sec:Experiments} illustrates the resulting multi-scale energy demand and demonstrates its use by evaluating direct market participation of agents of various scales and flexibilities. Finally Section~\ref{sec:Conclusion} serves as an epilogue to this work discussing the contributions.
+%The remainder of this article is organized as follows: Section~\ref{sec:Related} presents related work on modeling electricity demand, Section~\ref{sec:Method} discusses the proposed multi-scale energy demand model and the required parameter derivations to make it consistent with macro observations. Section~\ref{sec:Experiments} illustrates the resulting multi-scale energy demand and demonstrates its use by evaluating direct market participation of agents of various scales and flexibilities. Finally Section~\ref{sec:Conclusion} serves as an epilogue to this work discussing the contributions.
 
 
 \section{Related Work}
 \label{sec:Related}
 % problem - previous solutions
 The unobservable consumption profiles at lower scales of aggregation, especially single household demand profiles, have given rise to different approaches to model consumption. A semantic approach to household consumption profiles has been studied in related work~\cite{paatero2006model}. Statistics from household data are used to create a bottom-up model, approximating the consumption of a number of devices in hourly intervals. The artificial profiles generated by this model show high correlation with real data.
-Another model for the computation of daily electricity and hot-water demand profiles uses the mean appliance and water-tap data, as well as daylight distributions over the yea~\cite{widen2009constructing}. The comparison between generated profiles and the end-user specific electricity measurements in a small sample of households revealed that the generated model preserved the important qualitative features of real data, which was also the case when it was applied at larger scale.
+Another model for the computation of daily electricity and hot-water demand profiles uses the mean appliance and water-tap data, as well as daylight distributions over the year~\cite{widen2009constructing}. The comparison between generated profiles and the end-user specific electricity measurements in a small sample of households revealed that the generated model preserved the important qualitative features of real data, which was also the case when it was applied at larger scale.
 
 % Our solution
-While previous work in the area of generating synthetic consumption data was focussed on building semantic models, we propose a minimalistic but also more universal and versatile process--model. Our model has a different focus: Rather than studying the semantics, the core focus is the multi-scale modeling. Nevertheless, our model could be extended to capture semantic dependencies, e.g.  by joint distributions between the duration and consumption rate of processes. Our approach is a minimal model that can be scaled to any number of processes and can generalize to demand profiles with arbitrary time horizons. The proposed model can generate synthetic load profiles at any scale from a desired expected load profile.
+While previous work in the area of generating synthetic consumption data was focused on building semantic models, we propose a universal and versatile process--model. Our model has a different focus: Rather than studying the semantics, the core focus is the multi-scale modeling. Nevertheless, our model could be extended to capture semantic dependencies, e.g.  by joint distributions between the duration and consumption rate of processes. Our approach is a minimal model that can be scaled to any number of processes and can generalize to demand profiles with arbitrary time horizons. The proposed model can generate synthetic load profiles at any scale.
 
 % flexibility
-While related work has shown the impact of storage in real-time prices in relation to ramping constraints~\cite{gast2013impact, faghih2011optimal}; based on our model to generate synthetic load profiles, we use flexibility (storage) to study the feasibility of a decreasing the retailer size, in terms of the number of aggregated profiles that are needed to participate directly in the wholesale markets.
+While related work has shown the impact of storage in real-time prices in relation to ramping constraints~\cite{gast2013impact, faghih2011optimal}; based on our model to generate synthetic load profiles, we use flexibility (storage) to study the feasibility of decreasing the retailer size, in terms of the number of aggregated profiles that are needed to participate directly in the wholesale markets.
 
 % Smart-meter typification
 Other work has focused on typifying household load profiles into several categories~\cite{flath2012cluster,hayn2014electricity}. In a decentralized approach, different consumption profile types are important in regards to the possibility of forming groups of complementary types. Their work is thus complementary to ours.
 
 % decentralized demand management
-The importance of decentralized approaches for demand side management in the future smart--grid has been shown emphasizing at the improvements of the energy systems needed at the side of consumption~\cite{palensky2011demand}. Consumption loads can be shifted by decentralized demand side management (DSM) in the smart--grid in~\cite{Ramchurn2011a}. Emergent behavior of the agents in a such a scheme alongside with the adaptation to the grid electricity price can result in peak demand reduction.
-This has also been studied by formulating an energy consumption scheduling game and analyzing it game theoretically~\cite{Mohsenian-Rad2010}, where agents develop strategies in regards to their daily schedules of their household appliances and loads. Best response strategies from the players resulted in a significant reduction of the peak-to-average of the total electricity demand. Decentralized agent based techniques have also been used to manage micro-storage to allow storage devices in a smart--grid to converge to profitable and efficient behavior~\cite{vytelingum2010agent}. % Coalitional game theory has been used to study cooperative strategies between the self-adapting micro-grids (small parts of the bigger grid) of a distribution network~\cite{saad2011coalitional, saad2012game}, achieving a reduction in electricity transmission losses during simulations. 
+The importance of decentralized approaches for demand side management in the future smart--grid has been shown emphasizing at the improvements of the energy systems needed at the side of consumption~\cite{palensky2011demand}. Consumption loads can be shifted by decentralized demand side management (DSM) in the smart--grid in~\cite{Ramchurn2011a}. Emergent behavior of the agents in a such a scheme alongside with the adaptation to the grid electricity price can result in peak demand reduction. This has also been studied by formulating an energy consumption scheduling game and analyzing it game theoretically~\cite{Mohsenian-Rad2010}, where agents develop strategies in regards to their daily schedules of their household appliances and loads. Best response strategies from the players resulted in a significant reduction of the peak-to-average of the total electricity demand. 
+%Decentralized agent based techniques have also been used to manage micro-storage to allow storage devices in a smart--grid to converge to profitable and efficient behavior~\cite{vytelingum2010agent}. % Coalitional game theory has been used to study cooperative strategies between the self-adapting micro-grids (small parts of the bigger grid) of a distribution network~\cite{saad2011coalitional, saad2012game}, achieving a reduction in electricity transmission losses during simulations. 
 While these works focus primarily on the in-depth technology specific aspects of demand response and storage, we will here perform a simplified study of the merits of such technologies, independent of their implementation. Again, our primary parameter of interest is scale, but more precisely we also model storage and demand response by intra-day shifting of flexible demand.
 
-\begin{table}[t]
-\small
-\centering
-\caption{Notation.}
-\begin{tabular}{ r c p{0.7\columnwidth} }
-\toprule
- Symbol & & Definition \\
-\midrule
-  $\hat{q}$ & $\triangleq$ & Average load profile\\
-  $q_N$ & $\triangleq$ & Synthetic load profile of $N$ processes\\
-  $f$ & $\triangleq$ & Process\\
-  $k$ & $\triangleq$ & Consumption rate of a process\\
-  $\delta$ & $\triangleq$ & Duration of a process\\
-  $t_0$ & $\triangleq$ & Starting time of a process\\
-  $p_k$ & $\triangleq$ & Probability density function (PDF) of consumption rate\\
-  $p_{\delta}$ & $\triangleq$ & PDF of duration\\
-  $\bar{P}_{\delta}$ & $\triangleq$ & Complementary cumulative density function (CCDF) of duration\\
-  $p_{t_0}$ & $\triangleq$ & PDF of starting time\\
-  $N$ & $\triangleq$ & Number of processes\\
-\bottomrule
-\end{tabular}
-\label{tab:notation}
-\end{table}
+%\begin{table}[t]
+%\small
+%\centering
+%\caption{Notation.}
+%\begin{tabular}{ r c p{0.7\columnwidth} }
+%\toprule
+% Symbol & & Definition \\
+%\midrule
+%  $\hat{q}$ & $\triangleq$ & Average load profile\\
+%  $q_N$ & $\triangleq$ & Synthetic load profile of $N$ processes\\
+%  $f$ & $\triangleq$ & Process\\
+%  $k$ & $\triangleq$ & Consumption rate of a process\\
+%  $\delta$ & $\triangleq$ & Duration of a process\\
+%  $t_0$ & $\triangleq$ & Starting time of a process\\
+%  $p_k$ & $\triangleq$ & Probability density function (PDF) of consumption rate\\
+%  $p_{\delta}$ & $\triangleq$ & PDF of duration\\
+%  $\bar{P}_{\delta}$ & $\triangleq$ & Complementary cumulative density function (CCDF) of duration\\
+%  $p_{t_0}$ & $\triangleq$ & PDF of starting time\\
+%  $N$ & $\triangleq$ & Number of processes\\
+%\bottomrule
+%\end{tabular}
+%\label{tab:notation}
+%\end{table}
 
 \begin{figure}[b]
 \centering
@@ -116,13 +120,13 @@ While these works focus primarily on the in-depth technology specific aspects of
 % introduction to method
 In this section we propose a multi-scale model of energy demand that is consistent with observations at the macro-scale (e.g., standard load profiles for electric demand), and show the necessary parameter derivations. This model aggregates atomic individual \emph{processes}, where the number of processes becomes the \emph{scaling} parameter. The marginal densities of process duration, energy consumption and starting times are tuned to be coherent with macro observations, and the resulting multi-scale model can then generate synthetic data on arbitrary scales.
 % Second, we describe how to dynamically form and use cooperative coalitions of agents in a smart--grid based on their synthetic profiles.
-Table~\ref{tab:notation} presents the notation that will be used throughout this article.
+%Table~\ref{tab:notation} presents the notation that will be used throughout this article.
 
 
 
 \subsection{Multi-Scale Model of Energy Demand}\label{sec:LoadProfilesDecomposition}
 
-Figure~\ref{fig:slp} presents the daily load of a distribution substation. We are interested in decomposing such a makro-scale load profile $\hat{q} \in \mathbb{R}^n$, where $n$ is the number of discrete time intervals (the resolution). While the proposed method is general in $n$ and could equally be applied to annual standard load profiles, all experiments and figures use a $24$-hour time horizon with 96 quarter hourly time intervals for a consistent and intuitive presentation of the results.
+Figure~\ref{fig:slp} presents the daily load of a distribution substation. We are interested in decomposing such a macro-scale load profile $\hat{q} \in \mathbb{R}^n$, where $n$ is the number of discrete time intervals (the resolution). While the proposed method is general in $n$ and could equally be applied to annual standard load profiles, all experiments and figures use a $24$-hour time horizon with 96 quarter hourly time intervals for a consistent and intuitive presentation of the results.
 
 The load profile decomposition algorithm $lpd()$ generates synthetic load profiles given the desired scaling by the number of processes $N$. 
 
@@ -238,32 +242,34 @@ s =
 \end{array}
 \right.
 \end{equation*}
-For instance, looking at the first row of matrix $A$ that contains the probabilities for every timestep for the duration of a process that starts at timestep $0$, we can infer that the expected quantity for $q$ will be the probability of a process starting at timestep zero and having at least $0$ duration, starting at timestep $1$ and have duration at least $n$, or starting at timestep $n$ and having duration at least $1$. Solving the linear system will result in obtaining the scaled distribution of $p_{t_0}$ due to the scaled quantity $q'$. Normalizing $p_{t_0}$ to sum up to one yields the probability density function of the process starting times.
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}
-\draw[] (0,0) rectangle (3,2) node[pos=.5] {$lpd(\hat{q}, p_{\delta}, p_{k})$};
-\draw[->] (-0.2,1.5) node[anchor=east] {$\hat{q}$} -- (0,1.5) ;
-\draw[->] (-0.2,1) node[anchor=east] {$p_{\delta}$} -- (0,1);
-\draw[->] (-0.2,0.5) node[anchor=east] {$p_{k}$} -- (0,0.5) ;
+For instance, looking at the first row of matrix $A$ that contains the probabilities for every timestep for the duration of a process that starts at timestep $0$, we can infer that the expected quantity for $q$ will be the probability of a process starting at timestep zero and having at least $0$ duration, starting at timestep $1$ and have duration at least $n$, or starting at timestep $n$ and having duration at least $1$. Solving the linear system will result in obtaining the scaled distribution of $p_{t_0}$ due to the scaled quantity $q'$. Normalizing $p_{t_0}$ to sum up to one yields the probability density function of the process starting times. The inferred probabilities $p_{t_0}$ can be used in equation~\eqref{eq:GenerateSynthetic} to generate synthetic load profiles. 
 
-\draw[-] (-0.1,0.5)  -- (-0.1,-0.2);
-\draw[-] (-0.1,-0.2) -- (3.5,-0.2);
-\draw[->] (3.5,-0.2) -- (3.5,0.5);
 
-\draw[-] (-0.15,1)  -- (-0.15,-0.25);
-\draw[-] (-0.15,-0.25) -- (3.9,-0.25);
-\draw[->] (3.9,-0.25) -- (3.9,0.5);
-
-\draw[->] (3.7,2.0) node[anchor=south] {$N$} -- (3.7,1.5) ;
-\draw[->] (3,1) -- (3.2,1) ;
-\draw[] (3.2,0.5) rectangle (4.2,1.5) node[pos=.5] {$p_{t_0}$};
-\draw[->] (4.2,1) -- (4.4,1) node[anchor=west] {$q_N$ (Synthetic)};
-\end{tikzpicture}
-\caption{Schematic representation of the \emph{load profile decomposition} algorithm, which derives $p_{t_0}$ from the other marginal densities and the macro scale observations $\hat q$, and subsequent generation of synthetic demand profile $q_N$ on a specific scale $N$.}\label{fig:system}
-\end{figure}%
-
-The inferred probabilities $p_{t_0}$ can be used in equation~\eqref{eq:GenerateSynthetic} to generate synthetic load profiles.  Figure~\ref{fig:system} illustrates the described procedure schematically: the decomposition of standard load profiles into a process-model that can be scaled with the tuning of one parameter, the number of processes, approximating different aggregation levels.  
+%\begin{figure}[t]
+%\centering
+%\begin{tikzpicture}
+%\draw[] (0,0) rectangle (3,2) node[pos=.5] {$lpd(\hat{q}, p_{\delta}, p_{k})$};
+%\draw[->] (-0.2,1.5) node[anchor=east] {$\hat{q}$} -- (0,1.5) ;
+%\draw[->] (-0.2,1) node[anchor=east] {$p_{\delta}$} -- (0,1);
+%\draw[->] (-0.2,0.5) node[anchor=east] {$p_{k}$} -- (0,0.5) ;
+%
+%\draw[-] (-0.1,0.5)  -- (-0.1,-0.2);
+%\draw[-] (-0.1,-0.2) -- (3.5,-0.2);
+%\draw[->] (3.5,-0.2) -- (3.5,0.5);
+%
+%\draw[-] (-0.15,1)  -- (-0.15,-0.25);
+%\draw[-] (-0.15,-0.25) -- (3.9,-0.25);
+%\draw[->] (3.9,-0.25) -- (3.9,0.5);
+%
+%\draw[->] (3.7,2.0) node[anchor=south] {$N$} -- (3.7,1.5) ;
+%\draw[->] (3,1) -- (3.2,1) ;
+%\draw[] (3.2,0.5) rectangle (4.2,1.5) node[pos=.5] {$p_{t_0}$};
+%\draw[->] (4.2,1) -- (4.4,1) node[anchor=west] {$q_N$ (Synthetic)};
+%\end{tikzpicture}
+%\caption{Schematic representation of the \emph{load profile decomposition} algorithm, which derives $p_{t_0}$ from the other marginal densities and the macro scale observations $\hat q$, and subsequent generation of synthetic demand profile $q_N$ on a specific scale $N$.}\label{fig:system}
+%\end{figure}%
+ 
+%Figure~\ref{fig:system} illustrates the described procedure schematically: the decomposition of standard load profiles into a process-model that can be scaled with the tuning of one parameter, the number of processes, approximating different aggregation levels.  
 
 \section{Experiments and Results}
 \label{sec:Experiments}
@@ -306,12 +312,12 @@ Since we are looking into the daily consumption profile of a number of processes
 Figure~\ref{fig:devide-time-consumption}, presents the probability density functions for both the consumption rate and the duration of each process. Given the two distributions, the model can be obtained solving the linear system~\eqref{eq:linearSystem}, the result of the linear system of equations when normalized to sum up to unit is the probability density function of the starting time of a process $p_{t_0}$. Figure~\ref{fig:distribution_t_0} illustrates the distribution of probability for the starting time of a process over the day time horizon. Notice that the probability that a process starts is highly increasing after 6 am, and increasing again after 5 pm when people are home and tend to use most of the devices.
 
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=0.9\columnwidth]{figures/std_.pdf}
-\caption{Normalized mean plus-minus standard deviation for the expected quantity of electricity, for each number of processes computed from $1000$ generated samples. Consider that all sample profiles are always positive, and actually deviations are skewed.}
-\label{fig:Deviation}
-\end{figure}
+%\begin{figure}[t!]
+%\centering
+%\includegraphics[width=0.9\columnwidth]{figures/std_.pdf}
+%\caption{Normalized mean plus-minus standard deviation for the expected quantity of electricity, for each number of processes computed from $1000$ generated samples. Consider that all sample profiles are always positive, and actually deviations are skewed.}
+%\label{fig:Deviation}
+%\end{figure}
 
 
 Given the probability density function of the starting time of a device $p_{t_0}$ we can generate synthetic load profiles for specific scales $N$. Recall equation~\eqref{eq:approximation}: as the number of processes increases, the synthetic profile that is obtained should approximate the expected load $\mathbb{E}[q]$. As expected, Figure~\ref{fig:art_slps} shows how using the derived $p_{t_0}$ in equation~\eqref{eq:infer_t_0_axis} indeed gives rise to synthetic profiles that approximate the standard load profile $\hat{q}$ for large $N$. The scaling used in Table~\ref{tab:sizeInter} is used here to illustrate synthetic profiles for different real life scaling scenarios. A single device with expected daily consumption of $2.3$ kWh can be approximated when $N=10^1$. For $N=10^2$ the profile resembles the consumption of a household ($23$ kWh daily consumption). An aggregation of the consumption profiles of several apartments in a building is close to $N=10^3$ ($230$ kWh daily consumption). A low voltage transformer with up to a hundred households corresponds to $N=10^4$. The measurement of the consumption at the substation ($240$ MWh daily load, $N=10^6$) is very close to the expected quantity. In fact, we chose to show a smaller substation scale ($N=10^5$), which already yields very smooth behavior.
@@ -338,8 +344,8 @@ Given the probability density function of the starting time of a device $p_{t_0}
 \end{figure}
 
 
-As an initial evaluation of the profiles at different scales, % In the day-ahead market electricity aggregators and DSOs are buying the expected quantity of electricity based on the mean quantity of their portfolio of consumers. The imbalances of the intraday consumption of their portfolio will result in higher prices in the intraday market.
-Figure~\ref{fig:Deviation} illustrates the standard deviation computed from $1000$ sample synthetic profiles for different numbers of processes. The figure shows the mean and standard deviation normalized per process to obtain same scaling for all profiles. It can be observed that as the number of processes gets larger the standard deviation gets lower, and thus easier to predict. This is the main advantage that larger retailers have for direct wholesale energy market participation. The next section will address an explorative study of market participation on different scales. %resulting to less expected imbalances from the mean in the intraday load profile.
+%As an initial evaluation of the profiles at different scales, % In the day-ahead market electricity aggregators and DSOs are buying the expected quantity of electricity based on the mean quantity of their portfolio of consumers. The imbalances of the intraday consumption of their portfolio will result in higher prices in the intraday market.
+%Figure~\ref{fig:Deviation} illustrates the standard deviation computed from $1000$ sample synthetic profiles for different numbers of processes. The figure shows the mean and standard deviation normalized per process to obtain same scaling for all profiles. It can be observed that as the number of processes gets larger the standard deviation gets lower, and thus easier to predict. This is the main advantage that larger retailers have for direct wholesale energy market participation. The next section will address an explorative study of market participation on different scales. %resulting to less expected imbalances from the mean in the intraday load profile.
 
 \subsection{Wholesale Market Participation}
 
@@ -383,15 +389,15 @@ While the previous two case studies focused on the benefits of intraday demand r
 \label{fig:Wholesale_betweenDay}
 \end{figure}
 
-This article provides primarily two contributions: First, we have introduced a multi-scale energy demand model, aggregating processes, and an algorithm for alignment with given macro observations, such as standard load profiles. %We believe that this model is appropriate to approximate the consumption in a household level, where smart--meter data is difficult to be obtained and used for experimental purposes.
-Second, experiments show the business case for participating in the wholesale electricity markets at varying retailer scales, and how flexibility in the form of (virtual) storage and demand response reduces the minimum viable scale. The decrease in costs given sufficient flexibility, especially between-day, may bring the required aggregation scale down to the size of common place existing housing cooperatives, such as large apartment buildings. These cooperatives often already make joint long-term investments into their infrastructure. In combination with increasing flexibilities (electric vehicles, HVAC etc.) and in the context of rising energy prices and future markets with lower participation fees, this may make direct market participation in conjunction with local renewable production a viable future option.
+We have introduced a multi-scale energy demand model, aggregating processes, and an algorithm for alignment with given macro observations, such as standard load profiles. Experiments show the business case for participating in the wholesale electricity markets at varying retailer scales, and how flexibility in the form of (virtual) storage and demand response reduces the minimum viable scale. The decrease in costs given sufficient flexibility, especially between-day, may bring the required aggregation scale down to the size of common place existing housing cooperatives, such as large apartment buildings. These cooperatives often already make joint long-term investments into their infrastructure. In combination with increasing flexibilities (electric vehicles, HVAC, etc.) and in the context of rising energy prices and future markets with lower participation fees, this may make direct market participation in conjunction with local renewable production a viable future option.
 
 % Limitations
-For the sake of clarity and brevity, upfront investment costs and market fees have been neglected, and other simplifying assumptions have been made. First, the duration, power consumption and starting time of processes were treated as independent variables. Second, only one type of atomic process has been used. Third, only one type of (residential) consumption has been approximated. % Finally, the market side was treated heuristically, and optimization on the ahead market opens up various opportunity to build on this model.
-% 
+For the sake of clarity and brevity, upfront investment costs and market fees have been neglected, and other simplifying assumptions have been made. First, the duration, power consumption and starting time of processes were treated as independent variables. Second, only one type of atomic process has been used. Third, only one type of (residential) consumption has been approximated. 
+% Finally, the market side was treated heuristically, and optimization on the ahead market opens up various opportunity to build on this model.
+
 % Extensions
 The plasticity of our model allows straight-forward extensions to address each of these limitations. These extensions include but are not limited to (1) joint distributions over process characteristics, (2) considering further process types (e.g., recurring cycles), (3) approximating other demand types, supply profiles (e.g., of solar or wind generation), or even other commodities (heat, gas). In addition, the ahead-market has been tackled heuristically and can be optimized to further improve the gains. % In addition, the model can be adapted if the assumptions about known information change, e.g. if the set of controllable processes would be known this can be taken into account by the ahead trading.
-The model is therefore more widely applicable to study multi-scale effects of demand and supply aggregation and flexibilities in energy systems.
+The proposed model is therefore more widely applicable to study multi-scale effects of demand and supply aggregation and flexibilities in energy systems.
 
 
 \bibliographystyle{IEEEtran}

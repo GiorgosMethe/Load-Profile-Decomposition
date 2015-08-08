@@ -1650,14 +1650,14 @@
 \def\listtablename{List of Tables}
 \def\refname{References}
 \def\indexname{Index}
-\def\figurename{Fig.}
+\def\figurename{Figure}
 \def\tablename{TABLE}
 \@IEEEcompsocconfonly{\def\figurename{Figure}\def\tablename{Table}}
 \def\partname{Part}
 \def\appendixname{Appendix}
 \def\abstractname{Abstract}
 % IEEE specific names
-\def\IEEEkeywordsname{Keywords}
+\def\IEEEkeywordsname{Index Terms}
 \def\IEEEproofname{Proof}
 
 
