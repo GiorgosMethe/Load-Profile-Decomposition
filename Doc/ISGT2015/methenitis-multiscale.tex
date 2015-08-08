@@ -148,7 +148,7 @@ Every continuous (non-interrupted) consumption load incurred by a device for som
 \end{array}
 \right.
 \end{equation}
-Figure~\ref{fig:process} presents a visual representation of the atomic process model that is characterized by consumption $K$ kW, duration $\Delta$, and starting time $T$. The consumption profile of an electric device can consist of a number of processes. A typical household appliance (e.g. TV, heat pump, light bulb, electric vehicle charging, etc.) has several consumption cycles and idle functionality between these cycles, each of its consumption cycles will be treated as a separate process by the discussed model. Varying the number of processes, different aggregation levels of consumption (i.e. a device, a house, or a city) can be approximated. Table~\ref{tab:sizeInter} illustrates different numbers of processes alongside with the interpretation they could have in practice.
+Figure~\ref{fig:process} presents a visual representation of the atomic process model that is characterized by consumption $K$ kW, duration $\Delta$, and starting time $T$. The consumption profile of an electric device can consist of a number of processes. A typical household appliance (e.g. TV, heat pump, light bulb, electric vehicle charging, etc.) has several consumption cycles and idle functionality between these cycles, each of its consumption cycles will be treated as a separate process by the discussed model. Varying the number of processes, different aggregation levels of consumption (i.e. a device, a house, or a city) can be approximated. %Table~\ref{tab:sizeInter} illustrates different numbers of processes alongside with the interpretation they could have in practice.
 
 \subsubsection{Starting time of process}
 A process has been defined as the function $f(t, t_0, \delta, k)$. The synthetic load profile $q_N$ we are interested to generate is given by the following function:
@@ -161,22 +161,22 @@ which is the quantity of electricity of $N$ number of processes at timestep $t$.
 \end{equation}
 where $\bar{P}_{\delta} = 1 - P_{\delta}$, thus $\bar{P}_{\delta}$ is the complementary cumulative density function (CCDF) of the processes' duration such that: $\bar{P}_{\delta}(t-T) = p_{\delta}(\delta \geq (t-T))$. This corresponds to the expected value of the consumption of a process at $t$ multiplied by the probability that the process started on a specific timestep $T$ and it is still active at timestep $t$ (has duration greater or equal to $t-T$).
 
-\begin{table}[t]
-\caption{The energy demand model uses the number of processes as the scaling parameter. Different levels of aggregation correspond to different (ranges of) scales.}
-\normalsize\centering\begin{tabular}{ r | l }
-\toprule
-	Scale & Interpretation \\ 
-\midrule
-  $10^0 - 10^1$ & Device \\
-  $10^1 - 10^2$ & Household \\
-  $10^2 - 10^3$ & Apartment building \\
-  $10^3 - 10^4$ & Low voltage transformer \\
-  $10^5 - 10^6$ & Distribution substation \\
-  $10^6 - 10^7$ & City \\
-\bottomrule
-\end{tabular}
-\label{tab:sizeInter}
-\end{table}
+%\begin{table}[t]
+%\caption{The energy demand model uses the number of processes as the scaling parameter. Different levels of aggregation correspond to different (ranges of) scales.}
+%\normalsize\centering\begin{tabular}{ r | l }
+%\toprule
+%	Scale & Interpretation \\ 
+%\midrule
+%  $10^0 - 10^1$ & Device \\
+%  $10^1 - 10^2$ & Household \\
+%  $10^2 - 10^3$ & Apartment building \\
+%  $10^3 - 10^4$ & Low voltage transformer \\
+%  $10^5 - 10^6$ & Distribution substation \\
+%  $10^6 - 10^7$ & City \\
+%\bottomrule
+%\end{tabular}
+%\label{tab:sizeInter}
+%\end{table}
 
 The interaction of $p_{t_0}, p_{\delta}, p_k$ and $\hat q$ has a unique solution if assumptions are made about three out of the four functions.
 Assuming known distributions for the probability density function of a process duration $p_{\delta}$, and the consumption rate of a process $p_k$, we deduce the distribution over starting times from the desired macro profile $\hat q$. As the number of processes is increasing to infinity, the synthetic profile shall converge to the normalized averaged load profile $\hat{q}$:
@@ -336,13 +336,6 @@ Given the probability density function of the starting time of a device $p_{t_0}
 \label{fig:movable}
 \end{figure}
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.9\columnwidth]{figures/Wholesale.pdf}
-\caption{Electricity price per kWh (mean of 200 samples and shaded 95 \% confidence interval) for different aggregation scales and four levels of \textbf{virtual storage}. Retailers in the order of $10^4$ processes (ca. 200 households) can already participate directly in the wholesale markets without flexibility, while at least $10 \%$ virtual storage brings costs of direct market participation below retail for smaller collectives (ca. 20 households).}
-\label{fig:wholesale}
-\end{figure}
-
 
 %As an initial evaluation of the profiles at different scales, % In the day-ahead market electricity aggregators and DSOs are buying the expected quantity of electricity based on the mean quantity of their portfolio of consumers. The imbalances of the intraday consumption of their portfolio will result in higher prices in the intraday market.
 %Figure~\ref{fig:Deviation} illustrates the standard deviation computed from $1000$ sample synthetic profiles for different numbers of processes. The figure shows the mean and standard deviation normalized per process to obtain same scaling for all profiles. It can be observed that as the number of processes gets larger the standard deviation gets lower, and thus easier to predict. This is the main advantage that larger retailers have for direct wholesale energy market participation. The next section will address an explorative study of market participation on different scales. %resulting to less expected imbalances from the mean in the intraday load profile.
@@ -364,14 +357,6 @@ We now use a more sophisticated process to model the flexibility induced by dema
 
 Having a number of processes that can start at any time during the day, the agent uses an intelligent (sequential, greedy) heuristic to choose the best starting time that each of them will take. For each time-shiftable process, the starting time that minimizes positive imbalances is chosen sequentially, considering the sum of all uncontrollable and previously placed processes, until all processes are placed one by one. Figure~\ref{fig:movable} presents a consumption profile of $200$ processes from which $40$ of them are movable. Same prices are used in this experimental setup as the ones introduced in the previous experiment. Figure~\ref{fig:wholesale_flex} presents the price per kWh that is obtained at different scales in the wholesale and retail market with or without time-shiftable processes. The non-flexible line is equivalent to the previous experiment, while demand response flexibility is more restricted than the virtual battery due to the continuation of processes. Similar to the previous experiment, flexibility decreases viable market participation scale by a magnitude. However, at least $25$ \% demand response are needed to achieve this result.
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.9\columnwidth]{figures/Wholesale_flex.pdf}
-\caption{Electricity price per kWh (mean of 200 samples and shaded 95 \% confidence interval) for different aggregation scales and four levels of \textbf{demand response} penetration. Above $25 \%$ time-shiftable processes bring costs of direct market participation below retail for smaller collectives (ca. 20 households).}
-\label{fig:wholesale_flex}
-\end{figure}
-
-
 The large increase at lower scales is primarily attributed to the unpredictable total energy consumption during the trading horizon of a full day. This implies that demand curtailment, and shifting between consecutive trading days provides a key resource to further decrease the viable scale of direct electricity market participation.
 
 \subsubsection{Between-Day Storage}
@@ -382,12 +367,14 @@ While the previous two case studies focused on the benefits of intraday demand r
 \section{Conclusions}
 \label{sec:Conclusion}
 
-\begin{figure}[!t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.9\columnwidth]{figures/Wholesale_betweenDay.pdf}
+\includegraphics[width=0.32\textwidth]{figures/Wholesale_betweenDay.pdf}
+\includegraphics[width=0.32\textwidth]{figures/Wholesale_flex.pdf}
+\includegraphics[width=0.32\textwidth]{figures/Wholesale.pdf}
 \caption{Electricity price per kWh for different aggregation scales and four levels of storage capacities. Mean values computed using $200$-independent samples, 95$\%$ confidence interval is shown by the shaded areas.}
-\label{fig:Wholesale_betweenDay}
-\end{figure}
+\label{fig:Wholesale}
+\end{figure*}
 
 We have introduced a multi-scale energy demand model, aggregating processes, and an algorithm for alignment with given macro observations, such as standard load profiles. Experiments show the business case for participating in the wholesale electricity markets at varying retailer scales, and how flexibility in the form of (virtual) storage and demand response reduces the minimum viable scale. The decrease in costs given sufficient flexibility, especially between-day, may bring the required aggregation scale down to the size of common place existing housing cooperatives, such as large apartment buildings. These cooperatives often already make joint long-term investments into their infrastructure. In combination with increasing flexibilities (electric vehicles, HVAC, etc.) and in the context of rising energy prices and future markets with lower participation fees, this may make direct market participation in conjunction with local renewable production a viable future option.
 
