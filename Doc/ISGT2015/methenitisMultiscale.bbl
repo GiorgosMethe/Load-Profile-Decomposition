@@ -49,6 +49,12 @@ N.~Gast, J.-Y. Le~Boudec, A.~Prouti{\`e}re, and D.-C. Tomozei, ``Impact of
   \emph{Proceedings of the fourth international conference on Future energy
   systems}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2013, pp. 15--26.
 
+\bibitem{flath2012cluster}
+D.-W.-I.~C. Flath, D.-W.-I.~D. Nicolay, T.~Conte, P.~D.~C. van Dinther, and
+  L.~Filipova-Neumann, ``Cluster analysis of smart metering data,''
+  \emph{Business \& Information Systems Engineering}, vol.~4, no.~1, pp.
+  31--39, 2012.
+
 \bibitem{hayn2014electricity}
 M.~Hayn, V.~Bertsch, and W.~Fichtner, ``Electricity load profiles in europe:
   The importance of household segmentation,'' \emph{Energy Research \& Social
@@ -76,11 +82,6 @@ A.~H. Mohsenian-Rad, V.~W.~S. Wong, J.~Jatskevich, R.~Schober, and
   A.~Leon-Garcia, ``{Autonomous demand-side management based on game-theoretic
   energy consumption scheduling for the future smart grid},'' \emph{IEEE
   Transactions on Smart Grid}, vol.~1, no.~3, pp. 320--331, 2010.
-
-\bibitem{winer1971statistical}
-B.~J. Winer, D.~R. Brown, and K.~M. Michels, \emph{Statistical principles in
-  experimental design}.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill New
-  York, 1971, vol.~2.
 
 \bibitem{zimmermann2012household}
 J.-P. Zimmermann, M.~Evans, J.~Griggs, N.~King, L.~Harding, P.~Roberts, and

@@ -16,43 +16,43 @@ Warning--empty journal in Ramchurn2011a
 Done.
 You've used 12 entries,
             4039 wiz_defined-function locations,
-            886 strings with 9942 characters,
-and the built_in function-call counts, 9704 in all, are:
-= -- 786
-> -- 258
-< -- 90
-+ -- 139
-- -- 45
-* -- 485
-:= -- 1451
+            887 strings with 10042 characters,
+and the built_in function-call counts, 10162 in all, are:
+= -- 831
+> -- 272
+< -- 98
++ -- 147
+- -- 47
+* -- 512
+:= -- 1515
 add.period$ -- 25
 call.type$ -- 12
-change.case$ -- 11
-chr.to.int$ -- 201
+change.case$ -- 12
+chr.to.int$ -- 219
 cite$ -- 13
-duplicate$ -- 675
-empty$ -- 723
-format.name$ -- 56
-if$ -- 2212
+duplicate$ -- 704
+empty$ -- 735
+format.name$ -- 58
+if$ -- 2316
 int.to.chr$ -- 0
 int.to.str$ -- 12
-missing$ -- 120
+missing$ -- 124
 newline$ -- 61
 num.names$ -- 12
-pop$ -- 270
+pop$ -- 272
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 740
+skip$ -- 771
 stack$ -- 0
-substring$ -- 478
-swap$ -- 582
-text.length$ -- 23
+substring$ -- 521
+swap$ -- 617
+text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 12
 warning$ -- 1
-while$ -- 48
+while$ -- 52
 width$ -- 14
-write$ -- 141
+write$ -- 144
 (There was 1 warning)
