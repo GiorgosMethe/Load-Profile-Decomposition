@@ -71,6 +71,13 @@ M.~Hayn, V.~Bertsch, and W.~Fichtner, ``Electricity load profiles in europe:
   The importance of household segmentation,'' \emph{Energy Research \& Social
   Science}, vol.~3, pp. 30--45, 2014.
 
+\bibitem{SLPsource}
+\BIBentryALTinterwordspacing
+{Retail Market Design Service (RMDS)}. (2015, May) Standard load profiles
+  developed for the irish market. [Online]. Available:
+  \url{http://rmdservice.com/standard-load-profiles/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{palensky2011demand}
 P.~Palensky and D.~Dietrich, ``Demand side management: Demand response,
   intelligent energy systems, and smart loads,'' \emph{Industrial Informatics,
@@ -86,21 +93,6 @@ A.~H. Mohsenian-Rad, V.~W.~S. Wong, J.~Jatskevich, R.~Schober, and
   A.~Leon-Garcia, ``{Autonomous demand-side management based on game-theoretic
   energy consumption scheduling for the future smart grid},'' \emph{IEEE
   Transactions on Smart Grid}, vol.~1, no.~3, pp. 320--331, 2010.
-
-\bibitem{vytelingum2010agent}
-P.~Vytelingum, T.~D. Voice, S.~D. Ramchurn, A.~Rogers, and N.~R. Jennings,
-  ``Agent-based micro-storage management for the smart grid,'' in
-  \emph{Proceedings of the 9th International Conference on Autonomous Agents
-  and Multiagent Systems: volume 1-Volume 1}.\hskip 1em plus 0.5em minus
-  0.4em\relax International Foundation for Autonomous Agents and Multiagent
-  Systems, 2010, pp. 39--46.
-
-\bibitem{SLPsource}
-\BIBentryALTinterwordspacing
-{Retail Market Design Service (RMDS)}. (2015, May) Standard load profiles
-  developed for the irish market. [Online]. Available:
-  \url{http://rmdservice.com/standard-load-profiles/}
-\BIBentrySTDinterwordspacing
 
 \bibitem{winer1971statistical}
 B.~J. Winer, D.~R. Brown, and K.~M. Michels, \emph{Statistical principles in
