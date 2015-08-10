@@ -280,7 +280,7 @@ We start this section by showing the way synthetic load profiles can be generate
 
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=0.85\textwidth,height=0.21\textwidth]{figures/slps.pdf}
+\includegraphics[]{figures/slps.pdf}
 \caption{Example synthetic load profiles generated for different scales (numbers of processes). The kW axis varies between graphs in scale, but the expected quantity is given for comparison. The synthetic profile is approximating the expected value as the number of processes increases.}
 \label{fig:art_slps}
 \vspace{-0.5cm}
@@ -289,7 +289,7 @@ We start this section by showing the way synthetic load profiles can be generate
 \begin{figure}[t!]
 \centering
 \includegraphics[width=0.35\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.35\columnwidth]{figures/kappa.pdf}
-\caption{Left, probability density function $p_{\delta}$ for the duration (hours) of processes. Right, probability density function $p_k$ over consumption rates (kW) of the processes.}
+\caption{\textbf{Left}: probability density function $p_{\delta}$ for the duration (hours) of processes. \textbf{Right}: probability density function $p_k$ over consumption rates (kW) of the processes.}
 \label{fig:devide-time-consumption}
 \end{figure}
 
@@ -324,7 +324,7 @@ Given the probability density function of the starting time of a device $p_{t_0}
 \centering
 	\begin{subfigure}[b]{0.45\columnwidth}
 	\includegraphics[width=1.0\textwidth]{figures/slp_shortage.pdf}
-        \caption{Vurtual storage}
+        \caption{Virtual storage}
         \label{fig:shortage}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\columnwidth}
@@ -332,7 +332,7 @@ Given the probability density function of the starting time of a device $p_{t_0}
         \caption{Shiftable processes}
         \label{fig:movable}
     \end{subfigure}
-\caption{The dashed line indicates the power profile procured on the day-ahead market. \textbf{Left}: the shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage. \textbf{Right}: solid line shows power consumed by uncontrollable processes, and the shaded area indicates power consumed by time-shiftable processes, placed with a sequential greedy heuristic.}
+\caption{The dashed line indicates the power profile procured on the day-ahead market. \textbf{(a)}: the shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage. \textbf{(b)}: solid line shows power consumed by uncontrollable processes, and the shaded area indicates power consumed by time-shiftable processes, placed with a sequential greedy heuristic.}
 \label{fig:shortage}
 \end{figure}
 
