@@ -14,45 +14,45 @@ Database file #1: references.bib
 Warning--empty journal in Ramchurn2011a
 
 Done.
-You've used 15 entries,
+You've used 12 entries,
             4039 wiz_defined-function locations,
-            904 strings with 10598 characters,
-and the built_in function-call counts, 12390 in all, are:
-= -- 1011
-> -- 318
-< -- 119
-+ -- 173
-- -- 54
-* -- 615
-:= -- 1843
-add.period$ -- 32
-call.type$ -- 15
-change.case$ -- 14
-chr.to.int$ -- 267
-cite$ -- 16
-duplicate$ -- 861
-empty$ -- 929
-format.name$ -- 67
-if$ -- 2838
+            886 strings with 9942 characters,
+and the built_in function-call counts, 9704 in all, are:
+= -- 786
+> -- 258
+< -- 90
++ -- 139
+- -- 45
+* -- 485
+:= -- 1451
+add.period$ -- 25
+call.type$ -- 12
+change.case$ -- 11
+chr.to.int$ -- 201
+cite$ -- 13
+duplicate$ -- 675
+empty$ -- 723
+format.name$ -- 56
+if$ -- 2212
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 150
-newline$ -- 70
-num.names$ -- 15
-pop$ -- 331
+int.to.str$ -- 12
+missing$ -- 120
+newline$ -- 61
+num.names$ -- 12
+pop$ -- 270
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 949
+skip$ -- 740
 stack$ -- 0
-substring$ -- 635
-swap$ -- 747
-text.length$ -- 30
+substring$ -- 478
+swap$ -- 582
+text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 15
+type$ -- 12
 warning$ -- 1
-while$ -- 63
-width$ -- 17
-write$ -- 172
+while$ -- 48
+width$ -- 14
+write$ -- 141
 (There was 1 warning)

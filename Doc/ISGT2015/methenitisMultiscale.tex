@@ -29,11 +29,11 @@
 % use a multiple column layout for up to three different
 % affiliations
 \author{
-\IEEEauthorblockN{Georgios Methenitis, Michael Kaisers, Han La Poutr\'e
-\IEEEauthorblockA{Intelligent Systems Group (IS)\\
-Centrum Wiskunde \& Informatica\\
-Amsterdam, The Netherlands\\
-Emails: $\lbrace$Georgios.Methenitis, Michael.Kaisers, Han.La.Poutre$\rbrace$@cwi.nl}}
+%\IEEEauthorblockN{Georgios Methenitis, Michael Kaisers, Han La Poutr\'e
+%\IEEEauthorblockA{Intelligent Systems Group (IS)\\
+%Centrum Wiskunde \& Informatica\\
+%Amsterdam, The Netherlands\\
+%Emails: $\lbrace$Georgios.Methenitis, Michael.Kaisers, Han.La.Poutre$\rbrace$@cwi.nl}}
 }
 
 \maketitle
@@ -51,7 +51,7 @@ Demand Response, Intelligent Systems
 \label{sec:Introduction}
 
 % introduction, slps, non-observability
-In today's energy system, the major fraction of electricity is provided to power consumers by utility scale power producers through retail aggregators. Retailers must procure the power for their costumers whose energy consumption profile is not always observable (e.g., due to high cost of smart-meter roll-outs on-site). Standard load profiles~\cite{jardini2000daily} (SLPs) are derived by electricity distribution system operators for several types of consumers. Typical examples include residential, commercial and industrial. Those SLPs are used by retailers to determine the amount of energy that they must procure in the wholesale energy markets (day-ahead and intraday). Typically, SLPs contain an averaged daily consumption profile, based on historic data and the temperature. Distribution system operators (DSOs) are computing these SLPs from measurements, based on the portfolio of end-consumers behind a distribution substation. Power producers sell their energy at the wholesale markets, and are influenced via the retailers by this information to plan the amount of electricity they will need to make available at any given time of the (next) day. The goal of a retailer is to minimize the daily imbalances of the network, which can be achieved more cost-efficiently in the day-ahead market than in the intraday market~\cite{kirschen2003demand}. %Individual end-consumers are treated the same based on their averaged load profile $\hat{q}$ of their type of consumption by the DSOs. 
+In today's energy system, the major fraction of electricity is provided to power consumers by utility scale power producers through retail aggregators. Retailers must procure the power for their costumers whose energy consumption profile is not always observable (e.g., due to high cost of smart-meter roll-outs on-site). Standard load profiles~\cite{jardini2000daily} (SLPs) are derived by electricity distribution system operators for several types of consumers. Typical examples include residential, commercial and industrial. Those SLPs are used by retailers to determine the amount of energy that they must procure in the wholesale energy markets (day-ahead and intraday). Typically, SLPs contain an averaged daily consumption profile, based on historic data and the temperature. Distribution system operators (DSOs) are computing these SLPs from measurements, based on the portfolio of end-consumers behind a distribution substation. Power producers sell their energy at the wholesale markets, and are influenced via the retailers by this information to plan the amount of electricity they will need to make available at any given time of the (next) day. The goal of a retailer is to minimize the daily imbalances of the network, which can be achieved more cost-efficiently in the day-ahead market than in the intraday market. %Individual end-consumers are treated the same based on their averaged load profile $\hat{q}$ of their type of consumption by the DSOs.~\cite{kirschen2003demand}.
 
 % smart-meters
 While computing the average load profile per type of end-consumer is enough to plan over a highly populated portfolio of costumers, this is not the case when a smaller number of end-consumers is considered. Smart--meters are electronic devices that record consumption of electric energy in small intervals of at most an hour and communicate that information at least daily back to the central system for monitoring and billing~\cite{depuru2011smart}. Unlike home energy monitors, smart--meters can gather data for remote reporting, e.g. to replace standard load profiles of consumer types by actual load profile date in future energy markets. Communication between end-user meters and DSOs enables smart power management --- the smart grid. For instance, based on the information of smart--meters intelligent household systems can shift, store or curtail unnecessary loads in a household when imbalances of the network are high.
@@ -75,10 +75,12 @@ Another model for the computation of daily electricity and hot-water demand prof
 While previous work in the area of generating synthetic consumption data was focused on building semantic models, we propose a universal and versatile process--model. Our model has a different focus: Rather than studying the semantics, the core focus is the multi-scale modeling. Nevertheless, our model could be extended to capture semantic dependencies, e.g.  by joint distributions between the duration and consumption rate of processes. Our approach is a minimal model that can be scaled to any number of processes and can generalize to demand profiles with arbitrary time horizons. The proposed model can generate synthetic load profiles at any scale.
 
 % flexibility
-While related work has shown the impact of storage in real-time prices in relation to ramping constraints~\cite{gast2013impact, faghih2011optimal}; based on our model to generate synthetic load profiles, we use flexibility (storage) to study the feasibility of decreasing the retailer size, in terms of the number of aggregated profiles that are needed to participate directly in the wholesale markets.
-
+While related work has shown the impact of storage in real-time prices in relation to ramping constraints~\cite{gast2013impact}; based on our model to generate synthetic load profiles, we use flexibility (storage) to study the feasibility of decreasing the retailer size, in terms of the number of aggregated profiles that are needed to participate directly in the wholesale markets.
+%faghih2011optimal
 % Smart-meter typification
-Other work has focused on typifying household load profiles into several categories~\cite{flath2012cluster,hayn2014electricity}. In a decentralized approach, different consumption profile types are important in regards to the possibility of forming groups of complementary types. Their work is thus complementary to ours.
+Other work has focused on typifying household load profiles into several categories~\cite{hayn2014electricity}. In a decentralized approach, different consumption profile types are important in regards to the possibility of forming groups of complementary types. Their work is thus complementary to ours.
+
+%flath2012cluster
 
 \begin{figure}[t!]
 \centering
@@ -320,10 +322,20 @@ Given the probability density function of the starting time of a device $p_{t_0}
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.7\columnwidth]{figures/slp_shortage.pdf}
-\caption{The dashed line indicates the power profile procured on the day-ahead market. The shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage.}
+	\begin{subfigure}[b]{0.45\columnwidth}
+	\includegraphics[width=1.0\textwidth]{figures/slp_shortage.pdf}
+        \caption{Vurtual storage}
+        \label{fig:shortage}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\columnwidth}
+    \includegraphics[width=1.0\textwidth]{figures/movable.pdf}
+        \caption{Shiftable processes}
+        \label{fig:movable}
+    \end{subfigure}
+\caption{The dashed line indicates the power profile procured on the day-ahead market. \textbf{Left}: the shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage. \textbf{Right}: solid line shows power consumed by uncontrollable processes, and the shaded area indicates power consumed by time-shiftable processes, placed with a sequential greedy heuristic.}
 \label{fig:shortage}
 \end{figure}
+
 
 
 %As an initial evaluation of the profiles at different scales, % In the day-ahead market electricity aggregators and DSOs are buying the expected quantity of electricity based on the mean quantity of their portfolio of consumers. The imbalances of the intraday consumption of their portfolio will result in higher prices in the intraday market.
@@ -334,14 +346,6 @@ Given the probability density function of the starting time of a device $p_{t_0}
 %The next experiments investigate the scale at which intelligent agents can directly participate in the wholesale market instead of the retail market.
 In the future smart--grid, small collectives of households may participate as entities in the wholesale market instead of paying flat tariffs for their daily consumption. This would be a vital contribution to tapping into local flexibilities, which are thus far unavailable to the market, since retail customers have no financial incentives to align their behavior with the power grid's needs.
 We perform two experiments, studying the price per kWh that retailers can achieve at different scales and with varying flexibility, which is first provided by a virtual battery and second by demand response, more specifically by time-shifting flexible processes. For the retail market, we assume a flat electricity tariff of $0.22$ \euro/kWh. An agent participating in the wholesale markets directly may buy either on the day-ahead market, where prices are more formidable but information is limited to the anticipated expected demand $\hat q$ scaled according to $N$, or on the day itself via balancing markets (in practice either the intraday market or going into imbalance, which is automatically settled by the DSO through reserve markets). We assume a $0.15$ \euro/kWh price for the day-ahead market, adding taxes and surcharges to the trading price but saving the usual retailer profit when directly participating in the market. For the balancing we assume a 10-fold penalty cost ($1.50$ \euro/kWh) for energy that has not been procured on the day-ahead market. Over-procured capacity is wasted without additional cost.
-
-\begin{figure}[b!]
-\centering
-\includegraphics[width=0.7\columnwidth]{figures/movable.pdf}
-\caption{The dashed line indicates the power profile procured on the day-ahead market. The solid line shows power consumed by uncontrollable processes, and the shaded area shows power consumed by time-shiftable processes (demand response), placed with the sequential greedy heuristic.}
-\vspace{-0.4cm}
-\label{fig:movable}
-\end{figure}
 
 \subsubsection{Virtual Storage}
 Flexibility is modeled as the percentage of the daily consumption that can be transferred within the day, resulting in the reduction of imbalances to be procured on the balancing market. As an optimistic scenario (lower bound) of any intra-day flexibility, we assume lossless storage in the form of a daily netting (virtual battery), as illustrated in Figure~\ref{fig:shortage}.

@@ -1,6 +1,5 @@
 \relax 
 \citation{jardini2000daily}
-\citation{kirschen2003demand}
 \citation{depuru2011smart}
 \citation{paatero2006model}
 \citation{widen2009constructing}
@@ -8,8 +7,8 @@
 \newlabel{sec:Introduction}{{I}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{1}}
 \newlabel{sec:Related}{{II}{1}}
-\citation{gast2013impact,faghih2011optimal}
-\citation{flath2012cluster,hayn2014electricity}
+\citation{gast2013impact}
+\citation{hayn2014electricity}
 \citation{SLPsource}
 \citation{SLPsource}
 \citation{palensky2011demand}
@@ -38,46 +37,45 @@
 \newlabel{eq:infer_t_0_axis}{{10}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments and Results}{3}}
 \newlabel{sec:Experiments}{{IV}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Multi-Scale Model of Electricity Demand}{3}}
+\newlabel{sec:Results_Synthetic}{{\unhbox \voidb@x \hbox {IV-A}}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example synthetic load profiles generated for different scales (numbers of processes). The kW axis varies between graphs in scale, but the expected quantity is given for comparison. The synthetic profile is approximating the expected value as the number of processes increases.\relax }}{4}}
 \newlabel{fig:art_slps}{{3}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left, probability density function $p_{\delta }$ for the duration (hours) of processes. Right, probability density function $p_k$ over consumption rates (kW) of the processes.\relax }}{4}}
 \newlabel{fig:devide-time-consumption}{{4}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Multi-Scale Model of Electricity Demand}{4}}
-\newlabel{sec:Results_Synthetic}{{\unhbox \voidb@x \hbox {IV-A}}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Wholesale Market Participation}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The probability density function $p_{t_0}$ characterizes the starting times of the processes, and is shown as derived from the standard load profile in Figure\nobreakspace  {}1\hbox {}, and marginal densities in Figure\nobreakspace  {}4\hbox {}.\relax }}{4}}
 \newlabel{fig:distribution_t_0}{{5}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The dashed line indicates the power profile procured on the day-ahead market. The shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage.\relax }}{5}}
+\newlabel{fig:shortage}{{6a}{5}}
+\newlabel{sub@fig:shortage}{{a}{5}}
+\newlabel{fig:movable}{{6b}{5}}
+\newlabel{sub@fig:movable}{{b}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The dashed line indicates the power profile procured on the day-ahead market. \textbf  {Left}: the shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage. \textbf  {Right}: solid line shows power consumed by uncontrollable processes, and the shaded area indicates power consumed by time-shiftable processes, placed with a sequential greedy heuristic.\relax }}{5}}
 \newlabel{fig:shortage}{{6}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}Virtual Storage}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Intelligent Demand Response}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The dashed line indicates the power profile procured on the day-ahead market. The solid line shows power consumed by uncontrollable processes, and the shaded area shows power consumed by time-shiftable processes (demand response), placed with the sequential greedy heuristic.\relax }}{5}}
-\newlabel{fig:movable}{{7}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}Between-Day Storage}{5}}
 \bibstyle{IEEEtran}
 \bibdata{references}
 \bibcite{jardini2000daily}{1}
-\bibcite{kirschen2003demand}{2}
-\bibcite{depuru2011smart}{3}
-\bibcite{paatero2006model}{4}
-\newlabel{fig:wholesale}{{8a}{6}}
+\bibcite{depuru2011smart}{2}
+\bibcite{paatero2006model}{3}
+\bibcite{widen2009constructing}{4}
+\bibcite{gast2013impact}{5}
+\bibcite{hayn2014electricity}{6}
+\bibcite{SLPsource}{7}
+\bibcite{palensky2011demand}{8}
+\bibcite{Ramchurn2011a}{9}
+\bibcite{Mohsenian-Rad2010}{10}
+\bibcite{winer1971statistical}{11}
+\bibcite{zimmermann2012household}{12}
+\newlabel{fig:wholesale}{{7a}{6}}
 \newlabel{sub@fig:wholesale}{{a}{6}}
-\newlabel{fig:wholesale_flex}{{8b}{6}}
+\newlabel{fig:wholesale_flex}{{7b}{6}}
 \newlabel{sub@fig:wholesale_flex}{{b}{6}}
-\newlabel{fig:wholesale_betweenDay}{{8c}{6}}
+\newlabel{fig:wholesale_betweenDay}{{7c}{6}}
 \newlabel{sub@fig:wholesale_betweenDay}{{c}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Electricity price per kWh for different aggregation scales and four levels of storage capacities. Mean values computed using $200$-independent samples, 95$\%$ confidence interval is shown by the shaded areas.\relax }}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}3}Between-Day Storage}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Electricity price per kWh for different aggregation scales and four levels of storage capacities. Mean values computed using $200$-independent samples, 95$\%$ confidence interval is shown by the shaded areas.\relax }}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions}{6}}
 \newlabel{sec:Conclusion}{{V}{6}}
 \@writefile{toc}{\contentsline {section}{References}{6}}
-\bibcite{widen2009constructing}{5}
-\bibcite{gast2013impact}{6}
-\bibcite{faghih2011optimal}{7}
-\bibcite{flath2012cluster}{8}
-\bibcite{hayn2014electricity}{9}
-\bibcite{SLPsource}{10}
-\bibcite{palensky2011demand}{11}
-\bibcite{Ramchurn2011a}{12}
-\bibcite{Mohsenian-Rad2010}{13}
-\bibcite{winer1971statistical}{14}
-\bibcite{zimmermann2012household}{15}
