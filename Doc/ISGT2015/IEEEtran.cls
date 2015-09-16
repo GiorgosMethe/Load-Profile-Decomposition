@@ -1739,7 +1739,7 @@
 % but only \abovecaptionskip is used above figure captions and *below* table
 % captions
 \setlength\abovecaptionskip{0.65\baselineskip}
-\setlength\belowcaptionskip{0.75\baselineskip}
+\setlength\belowcaptionskip{0.70\baselineskip}
 % V1.6 create hooks in case the caption spacing ever needs to be
 % overridden by a user
 \def\@IEEEfigurecaptionsepspace{\vskip\abovecaptionskip\relax}%
