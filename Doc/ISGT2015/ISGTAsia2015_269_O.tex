@@ -5,7 +5,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{subcaption}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage[font=footnotesize, labelsep=period]{caption}
 \usepackage{comment}
 \usepackage{todonotes}
 \usepackage{tikz}
@@ -28,11 +29,11 @@
 % use a multiple column layout for up to three different
 % affiliations
 \author{
-%\IEEEauthorblockN{Georgios Methenitis, Michael Kaisers, Han La Poutr\'e
-%\IEEEauthorblockA{Intelligent Systems Group (IS)\\
-%Centrum Wiskunde \& Informatica\\
-%Amsterdam, The Netherlands\\
-%Emails: $\lbrace$Georgios.Methenitis, Michael.Kaisers, Han.La.Poutre$\rbrace$@cwi.nl}}
+\IEEEauthorblockN{Georgios Methenitis, Michael Kaisers, Han La Poutr\'e
+\IEEEauthorblockA{Intelligent Systems Group (IS)\\
+Centrum Wiskunde \& Informatica\\
+Amsterdam, The Netherlands\\
+$\lbrace$Georgios.Methenitis, Michael.Kaisers, Han.La.Poutre$\rbrace$@cwi.nl}}
 }
 
 \maketitle
@@ -96,6 +97,7 @@ Other work has focused on typifying household load profiles into several categor
 
 
 % decentralized demand management
+\newpage
 The importance of decentralized approaches for demand side management in the future smart--grid has been shown emphasizing the improvements of the energy systems needed at the side of consumption~\cite{palensky2011demand}. Consumption loads can be shifted by decentralized demand side management (DSM) in the smart--grid~\cite{Ramchurn2011a}. Emergent behavior of the agents in a such a scheme alongside with the adaptation to the grid electricity price can result in peak demand reduction. This has also been studied by formulating an energy consumption scheduling game and analyzing it game theoretically~\cite{Mohsenian-Rad2010}, where agents develop strategies in regards to their daily schedules of their household appliances and loads. Best response strategies from the players resulted in a significant reduction of the peak-to-average of the total electricity demand. 
 %Decentralized agent based techniques have also been used to manage micro-storage to allow storage devices in a smart--grid to converge to profitable and efficient behavior~\cite{vytelingum2010agent}. % Coalitional game theory has been used to study cooperative strategies between the self-adapting micro-grids (small parts of the bigger grid) of a distribution network~\cite{saad2011coalitional, saad2012game}, achieving a reduction in electricity transmission losses during simulations. 
 While these works focus primarily on the in-depth technology specific aspects of demand response and storage, we will here perform a meta study of the merits of such technologies, independent of their implementation. Again, our primary parameter of interest is scale, but more precisely we also model storage and demand response capacities by shifting of flexible demand.
@@ -357,20 +359,25 @@ The results are given in Figure~\ref{fig:wholesale}, which presents the price pe
 \centering
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
-	\includegraphics[scale=1.5, clip=true, trim=0cm 8.3cm 0 0]{figures/Wholesale_flex_legend.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=0cm 8.1cm 5cm 0]{figures/Wholesale.pdf}
+	\hspace{-1.2cm}\includegraphics[scale=0.7, clip=true, trim=0cm 7.5cm 5cm 0.7cm]{figures/Wholesale.pdf}	
+	\hspace{-0.5cm}\includegraphics[scale=0.7, clip=true, trim=0cm 6.9cm 5cm 1.3cm]{figures/Wholesale.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 8.1cm 0cm 0]{figures/Wholesale.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 7.5cm 0cm 0.7cm]{figures/Wholesale.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 6.9cm 0cm 1.3cm]{figures/Wholesale.pdf}	
 	\end{subfigure}
 	\begin{subfigure}[b]{0.32\textwidth}
-	\includegraphics[width=1.0\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale.pdf}
+	\includegraphics[width=1.1\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale.pdf}
         \caption{Between-day storage}
         \label{fig:wholesale}
     \end{subfigure}
    	\begin{subfigure}[b]{0.32\textwidth}
-	\includegraphics[width=1.0\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale_flex.pdf}
+	\includegraphics[width=1.1\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale_flex.pdf}
         \caption{Intelligent demand-response}
        \label{fig:wholesale_flex}
     \end{subfigure}
     \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=1.0\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale_betweenDay.pdf}
+        \includegraphics[width=1.1\textwidth, clip=true, trim=0 0 0 2cm]{figures/Wholesale_betweenDay.pdf}
         \caption{Virtual storage}
         \label{fig:wholesale_betweenDay}
     \end{subfigure}
