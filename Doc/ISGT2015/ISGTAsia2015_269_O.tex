@@ -2,21 +2,11 @@
 \usepackage{graphicx}
 \usepackage{eurosym}
 \usepackage{amsmath}
-\usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{graphicx}
 \usepackage[font=footnotesize]{subcaption}
 \usepackage[font=footnotesize, labelsep=period]{caption}
-\usepackage{comment}
-\usepackage{todonotes}
 \usepackage{tikz}
 \usepackage{balance}
-\usepackage{cite}
-\usepackage{lmodern}
-\usepackage{lipsum}
-\usepackage{tabularx}
-\usepackage{fixltx2e}
-\usepackage{booktabs}
 
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.8}
@@ -30,7 +20,7 @@
 % affiliations
 \author{
 \IEEEauthorblockN{Georgios Methenitis, Michael Kaisers, Han La Poutr\'e
-\IEEEauthorblockA{Intelligent Systems Group (IS)\\
+\IEEEauthorblockA{Intelligent Systems Group\\
 Centrum Wiskunde \& Informatica\\
 Amsterdam, The Netherlands\\
 $\lbrace$Georgios.Methenitis, Michael.Kaisers, Han.La.Poutre$\rbrace$@cwi.nl}}
@@ -89,15 +79,13 @@ Other work has focused on typifying household load profiles into several categor
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.7\columnwidth]{figures/slp.pdf}
+\includegraphics[width=0.8\columnwidth]{figures/slp.pdf}
 \caption{A typical standard load profile that captures the average household demand at the distribution substation level of aggregation, available as a public dataset~\cite{SLPsource}.}
 \label{fig:slp}
-\vspace{-0.5cm}
 \end{figure}
 
 
 % decentralized demand management
-\newpage
 The importance of decentralized approaches for demand side management in the future smart--grid has been shown emphasizing the improvements of the energy systems needed at the side of consumption~\cite{palensky2011demand}. Consumption loads can be shifted by decentralized demand side management (DSM) in the smart--grid~\cite{Ramchurn2011a}. Emergent behavior of the agents in a such a scheme alongside with the adaptation to the grid electricity price can result in peak demand reduction. This has also been studied by formulating an energy consumption scheduling game and analyzing it game theoretically~\cite{Mohsenian-Rad2010}, where agents develop strategies in regards to their daily schedules of their household appliances and loads. Best response strategies from the players resulted in a significant reduction of the peak-to-average of the total electricity demand. 
 %Decentralized agent based techniques have also been used to manage micro-storage to allow storage devices in a smart--grid to converge to profitable and efficient behavior~\cite{vytelingum2010agent}. % Coalitional game theory has been used to study cooperative strategies between the self-adapting micro-grids (small parts of the bigger grid) of a distribution network~\cite{saad2011coalitional, saad2012game}, achieving a reduction in electricity transmission losses during simulations. 
 While these works focus primarily on the in-depth technology specific aspects of demand response and storage, we will here perform a meta study of the merits of such technologies, independent of their implementation. Again, our primary parameter of interest is scale, but more precisely we also model storage and demand response capacities by shifting of flexible demand.
@@ -146,13 +134,13 @@ Figure~\ref{fig:slp} presents the daily load of a distribution substation. We ar
 
 \begin{figure}[!b]
 \centering
-\includegraphics[width=0.5\columnwidth]{figures/process.pdf}
+\includegraphics[width=0.6\columnwidth]{figures/process.pdf}
 \caption{The multi-scale model aggregates over individual atomic \emph{processes}, each characterized by consumption rate $K$ kW, duration $\Delta$, and starting time $T$.}
 \label{fig:process}
 \end{figure}
 
 \subsubsection{Process Model}
-Every continuous (non-interrupted) consumption load incurred by a device for some duration can be considered a process.  We define a \emph{process} as the consumption rate $k$ that is taking place, starting at time $t_0$ and having a duration $\delta$. It can then be modeled mathematically as a function $f$:
+Every continuous (non-interrupted) consumption load incurred by a device for some duration can be considered a process.  We define a \emph{process} as the consumption rate $k$ that is taking place, starting at time $t_0$ and having a duration $\delta$. It can then be modeled mathematically as a function~$f$:
 \begin{equation}
 \text{process: }f(t, t_0, \delta, k) =
 \left\lbrace
@@ -283,14 +271,14 @@ We start this section by showing the way synthetic load profiles can be generate
 
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=0.7\paperwidth, height=0.14\paperheight]{figures/slps.pdf}
+\includegraphics[]{figures/slps.pdf}
 \caption{Example synthetic load profiles generated for different scales (numbers of processes). The kW axis varies between graphs in scale, but the expected quantity is given for comparison. The synthetic profile is approximating the expected value as the number of processes increases.}
 \label{fig:art_slps}
 \end{figure*}
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.35\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.35\columnwidth]{figures/kappa.pdf}
+\includegraphics[width=0.45\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.45\columnwidth]{figures/kappa.pdf}
 \caption{\textbf{Left}: Probability density function $p_{\delta}$ for the duration (hours) of processes (for duration up to $8$ hours). \textbf{Right}: Probability density function $p_k$ over consumption rates (kW) of the processes (for load up to $2$ kW).}
 \label{fig:devide-time-consumption}
 \end{figure}
@@ -306,9 +294,8 @@ Figure~\ref{fig:devide-time-consumption}, presents the PDFs for both the consump
 
 \begin{figure}[b!]
 \centering
-\includegraphics[width=0.7\columnwidth]{figures/t_0.pdf}
+\includegraphics[width=0.8\columnwidth]{figures/t_0.pdf}
 \caption{The probability density function $p_{t_0}$ characterizes the starting times of the processes, and is shown as derived from the standard load profile in Figure~\ref{fig:slp}, and marginal densities in Figure~\ref{fig:devide-time-consumption}.}
-\vspace{-0.4cm}
 \label{fig:distribution_t_0}
 \end{figure}
 
@@ -324,12 +311,12 @@ Given the PDF of the starting times $p_{t_0}$ we can generate synthetic load pro
 
 \begin{figure}[t!]
 \centering
-	\begin{subfigure}[b]{0.45\columnwidth}
+	\begin{subfigure}[b]{0.49\columnwidth}
 	\includegraphics[width=1.1\textwidth, clip=true, trim=0 0 0 0.6cm]{figures/slp_shortage.pdf}
         \caption{Virtual storage}
         \label{fig:shortage}
     \end{subfigure}
-    \begin{subfigure}[b]{0.45\columnwidth}
+    \begin{subfigure}[b]{0.49\columnwidth}
     \includegraphics[width=1.0\textwidth]{figures/movable.pdf}
         \caption{Shiftable processes}
         \label{fig:movable}
@@ -379,7 +366,6 @@ The results are given in Figure~\ref{fig:wholesale}, which presents the price pe
         \caption{Virtual storage}
         \label{fig:wholesale_betweenDay}
     \end{subfigure}
-    \vspace{-0.4cm}
 \caption{Electricity price per kWh for different aggregation scales and four levels of storage capacities. Mean values computed using $200$-independent samples, 95$\%$ confidence interval is shown by the shaded areas.}
 \end{figure*}
 
