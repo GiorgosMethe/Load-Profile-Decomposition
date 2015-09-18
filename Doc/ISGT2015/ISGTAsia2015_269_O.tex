@@ -262,26 +262,28 @@ From equation~\eqref{eq:infer_t_0} we can produce a set of linear equations whic
 %\caption{Schematic representation of the \emph{load profile decomposition} algorithm, which derives $p_{t_0}$ from the other marginal densities and the macro scale observations $\hat q$, and subsequent generation of synthetic demand profile $q_N$ on a specific scale $N$.}\label{fig:system}
 %\end{figure}%
  
-%Figure~\ref{fig:system} illustrates the described procedure schematically: the decomposition of standard load profiles into a process-model that can be scaled with the tuning of one parameter, the number of processes, approximating different aggregation levels.  
+%Figure~\ref{fig:system} illustrates the described procedure schematically: the decomposition of standard load profiles into a process-model that can be scaled with the tuning of one parameter, the number of processes, approximating different aggregation levels. 
 
-\section{Experiments and Results}
-\label{sec:Experiments}
-We start this section by showing the way synthetic load profiles can be generated using the method in the previous section. The resulting load profiles are the basis for scaling experiments, studying the price of electricity in market participation under varying assumptions of flexibility.
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.45\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.45\columnwidth]{figures/kappa.pdf}
+\caption{\textbf{Left}: Probability density function $p_{\delta}$ for the duration (hours) of processes (for duration up to $8$ hours). \textbf{Right}: Probability density function $p_k$ over consumption rates (kW) of the processes (for load up to $2$ kW).}
+\label{fig:devide-time-consumption}
+\end{figure} 
 
-
-\begin{figure*}[t!]
+\begin{figure*}[t]
 \centering
 \includegraphics[]{figures/slps.pdf}
 \caption{Example synthetic load profiles generated for different scales (numbers of processes). The kW axis varies between graphs in scale, but the expected quantity is given for comparison. The synthetic profile is approximating the expected value as the number of processes increases.}
 \label{fig:art_slps}
 \end{figure*}
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=0.45\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.45\columnwidth]{figures/kappa.pdf}
-\caption{\textbf{Left}: Probability density function $p_{\delta}$ for the duration (hours) of processes (for duration up to $8$ hours). \textbf{Right}: Probability density function $p_k$ over consumption rates (kW) of the processes (for load up to $2$ kW).}
-\label{fig:devide-time-consumption}
-\end{figure}
+\section{Experiments and Results}
+\label{sec:Experiments}
+We start this section by showing the way synthetic load profiles can be generated using the method in the previous section. The resulting load profiles are the basis for scaling experiments, studying the price of electricity in market participation under varying assumptions of flexibility.
+
+
+
 
 \subsection{Multi-Scale Model of Electricity Demand}
 \label{sec:Results_Synthetic}
@@ -344,12 +346,12 @@ The results are given in Figure~\ref{fig:wholesale}, which presents the price pe
 \centering
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
-	\includegraphics[scale=0.7, clip=true, trim=0cm 8.1cm 5cm 0]{figures/Wholesale.pdf}
-	\hspace{-1.2cm}\includegraphics[scale=0.7, clip=true, trim=0cm 7.5cm 5cm 0.7cm]{figures/Wholesale.pdf}
-	\hspace{-0.5cm}\includegraphics[scale=0.7, clip=true, trim=0cm 6.9cm 5cm 1.3cm]{figures/Wholesale.pdf}
-	\includegraphics[scale=0.7, clip=true, trim=5cm 8.1cm 0cm 0]{figures/Wholesale.pdf}
-	\includegraphics[scale=0.7, clip=true, trim=5cm 7.5cm 0cm 0.7cm]{figures/Wholesale.pdf}
-	\includegraphics[scale=0.7, clip=true, trim=5cm 6.9cm 0cm 1.3cm]{figures/Wholesale.pdf}	
+	\includegraphics[scale=0.7, clip=true, trim=0cm 8.1cm 5cm 0]{figures/Wholesale_d.pdf}
+	\hspace{-1.2cm}\includegraphics[scale=0.7, clip=true, trim=0cm 7.5cm 5cm 0.6cm]{figures/Wholesale_d.pdf}
+	\hspace{-0.5cm}\includegraphics[scale=0.7, clip=true, trim=0cm 6.9cm 5cm 1.2cm]{figures/Wholesale_d.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 8.1cm 0cm 0]{figures/Wholesale_d.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 7.5cm 0cm 0.6cm]{figures/Wholesale_d.pdf}
+	\includegraphics[scale=0.7, clip=true, trim=5cm 6.9cm 0cm 1.2cm]{figures/Wholesale_d.pdf}	
 	\end{subfigure}
 	\begin{subfigure}[b]{0.32\textwidth}
 	\includegraphics[scale=0.7,clip=true, trim=0.3cm 0.0cm 8.7cm 3cm]{figures/ylabel.pdf}
