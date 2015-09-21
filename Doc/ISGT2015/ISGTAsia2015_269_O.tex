@@ -267,7 +267,7 @@ From equation~\eqref{eq:infer_t_0} we can produce a set of linear equations whic
 \begin{figure}[b!]
 \centering
 \includegraphics[width=0.45\columnwidth]{figures/delta.pdf}~\includegraphics[width=0.45\columnwidth]{figures/kappa.pdf}
-\caption{\textbf{Left}: Probability density function $p_{\delta}$ for the duration (hours) of processes (for duration up to $8$ hours). \textbf{Right}: Probability density function $p_k$ over consumption rates (kW) of the processes (for load up to $2$ kW).}
+\caption{\textbf{Left}: Probability density function $p_{\delta}$ for the duration (hours) of processes (shown for duration up to $8$ hours). \textbf{Right}: Probability density function $p_k$ over consumption rates (kW) of the processes (shown for load up to $2$ kW).}
 \label{fig:devide-time-consumption}
 \end{figure} 
 
@@ -316,12 +316,12 @@ Given the PDF of the starting times $p_{t_0}$ we can generate synthetic load pro
 	\begin{subfigure}[b]{0.49\columnwidth}
 	\includegraphics[width=1.1\textwidth, clip=true, trim=0 0 0 0.6cm]{figures/slp_shortage.pdf}
         \caption{Virtual storage}
-        \label{fig:shortage}
+        \label{fig:shortage_d}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\columnwidth}
     \includegraphics[width=1.0\textwidth]{figures/movable.pdf}
         \caption{Shiftable processes}
-        \label{fig:movable}
+        \label{fig:movable_d}
     \end{subfigure}
 \caption{The dashed line indicates the power profile procured on the day-ahead market. \textbf{(a)}: the shaded areas indicate the actual shortage (above) and excess capacity (below). Virtual storage applies a daily netting of shortage and excess, and provides an optimistic bound on any (possibly lossful) storage. \textbf{(b)}: solid line shows power consumed by uncontrollable processes, and the shaded area indicates power consumed by time-shiftable processes, placed with a sequential greedy heuristic.}
 \label{fig:shortage}
@@ -339,7 +339,7 @@ In the future smart--grid, small collectives of households may participate as en
 We perform two experiments, studying the price per kWh that can be achieved at different scales and with varying flexibility, which is first provided by a virtual battery and second by demand response, more specifically by time-shifting flexible processes. For the retail baseline, we assume a flat electricity tariff of $0.22$ \euro/kWh. A cooperative participating in the wholesale market volatility may buy either on the day-ahead market, where prices are more formidable but information is limited to the anticipated expected demand $\hat q$ scaled according to $N$, or on the day itself via balancing markets (in practice either the intraday market or going into imbalance, which is automatically settled by the DSO through reserve markets). We assume a $0.15$ \euro/kWh price for the day-ahead market, adding taxes and surcharges to the trading price but saving the retailer risk margin when assuming the market risk itself. For the balancing we assume a 10-fold penalty cost ($1.50$ \euro/kWh) for energy that has not been procured on the day-ahead market. Over-procured capacity is wasted without additional cost.
 
 \subsubsection{Virtual Storage}
-Flexibility is modeled as the percentage of the daily consumption that can be transferred within the day, resulting in the reduction of imbalances to be procured on the balancing market. As an optimistic scenario (lower bound of costs) of any intraday flexibility, we assume lossless storage in the form of a daily netting (virtual battery), as illustrated in Figure~\ref{fig:shortage}.
+Flexibility is modeled as the percentage of the daily consumption that can be transferred within the day, resulting in the reduction of imbalances to be procured on the balancing market. As an optimistic scenario (lower bound of costs) of any intraday flexibility, we assume lossless storage in the form of a daily netting (virtual battery), as illustrated in Figure~\ref{fig:shortage_d}.
 The results are given in Figure~\ref{fig:wholesale}, which presents the price per kWh for four levels of flexibility over various scales. For comparison, the retail and ahead market prices are given. Market participation without flexibility is viable from a magnitude of $10^4$ processes, which is the crucial point when a cooperative can assume the risk of wholesale market price volatility as the achieved total costs are getting smaller than the flat retail market tariffs. Lossless storage of just $10$ \% would move the minimum viable scale down by a magnitude, with further flexibility having lesser effect.
 
 \begin{figure*}[t!]
@@ -376,7 +376,7 @@ The results are given in Figure~\ref{fig:wholesale}, which presents the price pe
 
 \subsubsection{Intelligent Demand Response}
 
-We now use a more sophisticated method to model the flexibility induced by demand response in the future smart--grid, illustrated in Figure~\ref{fig:movable}. Demand response is modeled as (a subset of) time-shiftable processes. We use a fraction (e.g., $10\%$) of the total number of processes as processes that can be moved during the day. However, the processes are not know on the day ahead. This corresponds to the assumption that it may be unclear how empty the car battery will be, or how big a laundry needs to be run. Thus, even time-shiftable processes remain stochastic in the two variables of consumption and duration.
+We now use a more sophisticated method to model the flexibility induced by demand response in the future smart--grid, illustrated in Figure~\ref{fig:movable_d}. Demand response is modeled as (a subset of) time-shiftable processes. We use a fraction (e.g., $10\%$) of the total number of processes as processes that can be moved during the day. However, the processes are not know on the day ahead. This corresponds to the assumption that it may be unclear how empty the car battery will be, or how big a laundry needs to be run. Thus, even time-shiftable processes remain stochastic in the two variables of consumption and duration.
 Having a number of processes that can start at any time during the day, the agent uses an intelligent (sequential, greedy) heuristic to choose the best starting time that each of them will take. For each time-shiftable process, the starting time that minimizes positive imbalances is chosen sequentially, considering the sum of all uncontrollable and previously placed processes, until all processes are placed one by one. Figure~\ref{fig:movable} presents a consumption profile of $200$ processes from which $40$ ($20~\%$) of them have been shifted. The same prices are used in this experimental setup as the ones introduced in the previous experiment. Figure~\ref{fig:wholesale_flex} presents the price per kWh that is obtained at different scales in the wholesale and retail market with or without time-shiftable processes. The non-flexible line is equivalent to the previous experiment, while demand response flexibility is more restricted than the virtual battery due to the continuation of processes. Similar to the previous experiment, flexibility decreases viable market participation scale by a magnitude. However, at least $25$ \% demand response are needed to achieve this result.
 The large price increase at lower scales is primarily attributed to the unpredictable total energy consumption during the trading horizon of a full day. This implies that demand curtailment, and shifting between consecutive trading days provides a key resource to further decrease the viable scale of electricity market volatility participation.
 
