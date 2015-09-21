@@ -218,10 +218,10 @@ From equation~\eqref{eq:infer_t_0} we can produce a set of linear equations whic
 \end{array}\right]
 =
 \left[\begin{array}{c}  
- q'(0) \\ 
-  q'(1) \\ 
+ \hat{q}'(0) \\ 
+  \hat{q}'(1) \\ 
  \vdots \\
- q'(n) \\  
+ \hat{q}'(n) \\  
 \end{array}\right]
 \end{equation}
 \end{small}Normally matrix $A$ would be a lower triangular matrix, where processes that influence the probability density at timestep $t$ are only the ones starting at timesteps $t_0 \in [0, t]$. In order to model the continuity of our model over the time horizon we assume wrap-around, i.e. processes which start late in the day and have a duration that lasts longer than the day's horizon influence the expected quantity at the beginning of the same day (or whatever the horizon of the profile). In this way, matrix $A$ models the past and the future processes that may affect the current PDF at timestep $t$. Equation~\eqref{eq:infer_t_0} becomes:
@@ -235,7 +235,7 @@ From equation~\eqref{eq:infer_t_0} we can produce a set of linear equations whic
 \end{array}
 \right.
 \end{equation}
-\end{small}Looking at the first row of matrix $A$ that contains the probabilities for every timestep for the duration of a process that starts at timestep $0$, we can infer that the expected quantity for $q$ will be the probability of a process starting at timestep zero and having at least $0$ duration, starting at timestep $1$ and have duration at least $n$, or starting at timestep $n$ and having duration at least $1$. Solving the linear system will result in obtaining the scaled distribution of $p_{t_0}$ due to the scaled quantity $q'$. Normalizing $p_{t_0}$ to sum up to one yields the PDF of the process starting times. The inferred probabilities $p_{t_0}$ can be used in equation~\eqref{eq:GenerateSynthetic} to generate synthetic load profiles. 
+\end{small}Looking at the first row of matrix $A$ that contains the probabilities for every timestep for the duration of a process that starts at timestep $0$, we can infer that the expected quantity for $q$ will be the probability of a process starting at timestep zero and having at least $0$ duration, starting at timestep $1$ and have duration at least $n$, or starting at timestep $n$ and having duration at least $1$. Solving the linear system will result in obtaining the scaled distribution of $p_{t_0}$ due to the scaled quantity $\hat{q}'$. Normalizing $p_{t_0}$ to sum up to one yields the PDF of the process starting times. The inferred probabilities $p_{t_0}$ can be used in equation~\eqref{eq:GenerateSynthetic} to generate synthetic load profiles. 
 
 
 %\begin{figure}[t]
