@@ -1,0 +1,125 @@
+\documentclass[11pt,mathserif]{beamer}
+%\usepackage{sfmath}
+\usepackage{ifthen}
+%\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{psfrag}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{tikz}
+
+
+% Definition of vectors (boldface) in mathmode
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}}
+{\mbox{\boldmath$\scriptstyle#1$}}
+{\mbox{\boldmath$\scriptscriptstyle#1$}}}
+% End of definition
+%
+% Macro definitions
+%
+\newcommand{\dynamic}[1]{{#1}^{\mbox{\tiny dyn}}}
+\newcommand{\ddynamic}[1]{{#1}^{\mbox{\tiny dyn}}}
+\newcommand{\myint}{\mathop{\int}}
+\definecolor{mygrey}{rgb}{0.45,0.45,0.45}
+
+\definecolor{myred}{HTML}{FF0000}
+\definecolor{myblue}{HTML}{0000FF}
+\definecolor{mygreen}{HTML}{399e42}
+
+\usetheme[framenumber,totalframenumber]{CWI}
+
+\title{Title}
+\author{Intelligent Systems group, CWI Amsterdam}
+\date{\today}
+
+\setcounter{page}{0}
+
+\begin{document}
+
+\frame
+{
+  \begin{center}
+    \vspace{-4em}\begin{tabular}{cc}
+      \hspace*{-2mm}
+      \begin{tabular}{c}
+        {\hspace*{-1.5mm}\includegraphics[scale=0.4]{CWI_logo.pdf}}
+      \end{tabular}
+      \hspace*{-4mm}
+      &
+      \begin{tabular}{l}
+        $\phantom{++++++++++++++++++}$\\[-6mm]
+        \textbf{Intelligent Systems Group}\\\textbf{Centrum Wiskunde \& Informatica}\\Amsterdam\\[-1mm]
+      \end{tabular}
+    \end{tabular}
+    \ \\[5em]
+  {\Large \bf Title}\\[2em]
+  {\large Author name}\\[2em]
+      \textcolor{gray}{Draft version, \today}
+  \end{center}
+}
+
+\setcounter{page}{1}
+
+\section{Research statement}
+\begin{frame}{Research statement}
+\small
+% Why is it necessary to do this research?
+\alert{Problem}:
+...\\[1em]
+
+% Stating the conclusion to be proven
+\alert{Hypothesis}: ....\\[1em]
+
+% What question does this project/article/research answer specifically?
+\alert{Research question}: ?
+
+\end{frame}
+
+\section{Method}
+
+\begin{frame}{Method}
+Formal decision problem and solution structure
+\end{frame}
+
+
+\section{Experiments}
+
+\begin{frame}{Experimental setup}
+Specific parameters and problem or input visualization
+\end{frame}
+
+\begin{frame}{Experimental results}
+Graphs beat tables
+\end{frame}
+
+
+
+
+
+\section{Summary \& Questions}
+
+\begin{frame}{Summary}
+\alert{Contributions}
+\begin{itemize}
+  \item 
+  \item 
+  \item 
+\end{itemize}
+\alert{Conclusion}: ...
+
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+\Huge Questions?
+\end{center}
+
+\end{frame}
+
+
+\end{document}
