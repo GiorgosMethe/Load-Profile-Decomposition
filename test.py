@@ -50,7 +50,7 @@ def main():
     """
     Time discretization
     """
-    n_intervals = 8
+    n_intervals = 24*60 # discretized in minutes
     discrete_timeaxis = np.linspace(0.0, 24.0, n_intervals+1)
     discrete_consumption = lpd.signal_discretization(discrete_timeaxis, t, ts, cs)
     plt.step(ts/len(t)*t[-1], cs, where='post', c='r')
